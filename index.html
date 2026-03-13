@@ -1,1460 +1,488 @@
-
-how hard is it to build a mobile application gaming
-
-15:27
-
-Marshaled comprehensive insights on mobile game development complexity
-Marshaled comprehensive insights on mobile game development complexity
-Building a mobile game can range from pretty approachable to extremely complex, depending on what you're trying to build. Here's a honest breakdown:
-
-Difficulty Spectrum
-Simple / Casual Games (1–3 months, solo dev) Think puzzle games, 2D platformers, hyper-casual games (Flappy Bird-style). These are very achievable for a motivated individual, especially with modern game engines. This is the best starting point.
-
-Mid-Tier Games (3–12 months, small team) Games with progression systems, multiplayer, leaderboards, in-app purchases, and polished UX. Technically doable solo, but the scope creep is real. You'll likely need help with art, sound, or backend.
-
-Complex / AAA Mobile Games (1–3+ years, full team) Think games like PUBG Mobile, Clash of Clans, or Genshin Impact. These require large teams, millions in budget, and deep expertise in networking, rendering, live ops, and more.
-
-Key Factors That Determine Difficulty
-1. Game Engine Choice This is the single biggest decision. The main options:
-
-Unity — most popular for mobile games, massive community, C#, handles 2D and 3D well
-Godot — free, open-source, beginner-friendly, growing fast
-Unreal Engine — powerful but overkill for most mobile games; heavy on resources
-React Native / Flutter — workable for very simple casual games, but not ideal
-2. 2D vs. 3D 2D games are significantly easier to build, optimize, and ship than 3D games. Mobile hardware constraints make 3D performance a real challenge.
-
-3. Multiplayer Adding real-time multiplayer (think any PvP game) dramatically increases complexity — you need backend infrastructure, matchmaking, latency handling, anti-cheat, etc.
-
-4. Monetization & Platform Requirements App Store (Apple) and Google Play both have approval processes, guidelines, and revenue-sharing rules. In-app purchases, subscriptions, and ads all add integration work. Apple's review process is notoriously strict.
-
-5. Art & Sound Often underestimated. Even a simple game needs sprites, animations, UI elements, and audio. If you're not an artist, you'll either need to hire one, use asset packs, or generate assets with AI tools.
-
-What You Actually Need to Learn
-Programming — C# (Unity) or GDScript (Godot) are the main entry points
-Game design fundamentals — loops, progression, feel, balancing
-Physics & collision — engines handle most of this, but you need to understand it
-Mobile-specific optimization — battery, memory, draw calls, screen sizes
-Publishing — developer accounts, store listings, metadata, screenshots
-Honest Assessment
-For someone with software engineering experience (like yourself), the technical bar for a simple mobile game is actually not that high — especially in Unity or Godot. The harder parts tend to be:
-
-Scope control — ideas are easy, finishing is hard
-Game feel — making something actually fun is a design skill separate from engineering
-Art — games are visual products; ugly games rarely succeed
-Marketing — the App Store has millions of games; discoverability is brutal
-Recommended Starting Path
-Pick Unity or Godot and complete a beginner tutorial game (pong, breakout, endless runner)
-Build one small, finished game and publish it — even if it's not great
-Iterate from there with increasing scope
-The first published game is the hardest milestone. After that, the learning curve flattens significantly. Are you thinking about a specific type of game or genre?
-
-so something to develop first that can be built in a day, and kids gaming educational
-
-15:32
-
-Brainstormed concrete game concepts for rapid educational development
-Brainstormed concrete game concepts for rapid educational development
-Great constraint — "build in a day" forces you to keep scope tight, which is actually the best way to start. Here are some solid options for educational kids games that are genuinely buildable in a day:
-
-Best One-Day Educational Kids Game Ideas
-🔢 Math Blaster / Number Pop
-Kids pop balloons or shoot targets with the correct answer to a math problem. Simple 2D, no physics needed, highly replayable.
-
-Teaches: Addition, subtraction, multiplication
-Complexity: Very low — just UI, timers, random number generation
-Age target: 5–10
-🔤 Word Scramble / Letter Matcher
-Drag letters into the correct order to spell a word, with a picture hint shown.
-
-Teaches: Spelling, vocabulary
-Complexity: Very low — drag-and-drop, a word list, simple scoring
-Age target: 4–8
-🌍 Shape & Color Sorter
-Objects fall from the top of the screen and kids tap/drag them into matching bins by color or shape.
-
-Teaches: Colors, shapes, categorization
-Complexity: Extremely low — perfect for a true first game
-Age target: 2–5 (toddler market is huge and underserved)
-🧠 Memory Card Match
-Classic flip-card matching game with animals, numbers, or letters. Timed or untimed modes.
-
-Teaches: Memory, concentration, letter/number recognition
-Complexity: Very low — grid of cards, flip animation, match logic
-Age target: 4–9
-➕ Counting Clicker
-Tap the correct number of objects shown on screen (e.g., "tap 4 apples"). Gets progressively harder.
-
-Teaches: Counting, number recognition
-Complexity: Extremely low
-Age target: 3–6
-My Top Recommendation for Day One
-Memory Card Match — here's why:
-
-The logic is minimal (flip, compare, match)
-It's visually satisfying and kids genuinely love it
-You can use free emoji or icon assets and it still looks good
-Easy to add educational themes (animals, letters, numbers, flags)
-Works great on mobile (tap-based, no complex controls)
-Parents recognize and trust the format
-Fastest Tech Stack for This
-Rather than a full game engine for a one-day build, consider:
-
-Web app (HTML/CSS/JS) — deployable instantly, works on mobile browser, no App Store needed to test
-React Native — if you want a real app feel and you're comfortable with JS
-Godot — if you want to learn a proper game engine from day one
-For a true one-day build, a web app is the fastest path — you can have a working memory card game in 3–4 hours and spend the rest polishing it.
-
-Scope for Your One-Day Build
-Keep it to exactly this feature set — nothing more:
-
- 4x4 grid of cards (16 cards, 8 pairs)
- Flip animation on tap
- Match detection + cards stay face up
- Move counter or timer
- Win screen
- One theme (animals or numbers)
-That's a shippable v1. Want me to scaffold the code for any of these?
-
-target 2-5 years
-
-15:35
-
-Synthesized age-appropriate game mechanics and design principles
-Synthesized age-appropriate game mechanics and design principles
-For 2–5 year olds, the design rules change significantly. Here's what actually matters for this age group:
-
-Design Rules for 2–5 Year Olds
-No reading — everything must be visual or audio-guided
-No timers or pressure — stress kills engagement for toddlers
-Big tap targets — small fingers have poor precision
-Immediate audio + visual reward — sound effects and animations on every correct action
-Forgiving interaction — wrong answers shouldn't feel punishing, just redirect gently
-Short sessions — 2–3 minutes of engagement is a win
-Bright, high-contrast colors — simple bold visuals over realistic art
-Best Fit: Shape & Color Sorter
-This is the perfect match for 2–5. Here's the exact scope:
-
-Gameplay loop: A shape falls slowly from the top. Three bins at the bottom (circle, square, triangle). Kid drags or taps the correct bin. Confetti + sound plays on correct answer. Gentle "try again" on wrong.
-
-Why it works:
-
-Zero reading required
-One decision per round (very low cognitive load)
-Tactile drag interaction feels satisfying
-Teaches real curriculum (shapes are kindergarten standard)
-Parents actively look for this type of app
-One-Day Build Plan
-Stack: HTML/CSS/JS (fastest to build and test on mobile browser)
-
-Hour-by-Hour Breakdown
-Time	Task
-Hour 1	Setup, draw 3 shapes on screen, basic layout
-Hour 2	Drag-and-drop logic, bin detection
-Hour 3	Correct/wrong feedback (color flash, sound)
-Hour 4	Score counter, next round logic, win state
-Hour 5	Polish — animations, colors, big friendly font
-Hour 6	Test on actual phone, fix touch issues
-Want Me to Build the Starter Code?
-I can generate a fully working HTML/JS version right now with:
-
-3 shapes (circle, square, triangle)
-Drag and drop onto matching bins
-Confetti animation on correct answer
-Sound feedback hooks
-Mobile-friendly touch support
-Want me to go ahead and build it?
-
-but how to make it avaialbe on mobile app ?
-
-15:35
-
-Deliberated mobile app deployment strategies for web games
-Deliberated mobile app deployment strategies for web games
-Great question — there are a few routes depending on how much effort you want to invest:
-
-Option 1: Progressive Web App (PWA) — Easiest, Do It Today
-Take your HTML/JS game and make it installable on a phone without any App Store. Users open it in Chrome/Safari, tap "Add to Home Screen," and it behaves like a real app — fullscreen, icon on home screen, works offline.
-
-What you add to your existing HTML:
-
-A manifest.json file (app name, icon, colors)
-A service worker (enables offline mode)
-That's it
-Pros: Zero cost, no App Store approval, done in an hour Cons: Not discoverable on App Store, some iOS Safari limitations
-
-Option 2: Wrap with Capacitor — Best Middle Ground
-Capacitor (by Ionic) takes your existing HTML/JS app and wraps it into a real native iOS/Android app. You write zero native code.
-
-Your HTML/JS game → Capacitor → Real .apk (Android) / .ipa (iOS)
-Steps:
-
-Install Capacitor in your project
-Run npx cap add android or npx cap add ios
-Build and it generates a native app shell around your web game
-Submit to App Store / Google Play
-Pros: Real app, App Store publishable, access to native APIs Cons: Need a Mac to build for iOS, small learning curve (~1 day)
-
-Option 3: Google Play First, App Store Later — Practical Path
-For your first release, Android is far easier than iOS:
-
-Google Play	Apple App Store
-Developer account	$25 one-time	$99/year
-Review time	Few hours	1–3 days
-Build requirement	Any OS	Requires a Mac
-Strictness	More lenient	Very strict
-Start with Android, validate the idea, then tackle iOS.
-
-Option 4: Build in Godot Instead — Future-Proof
-If you're planning to build more games, skip the HTML wrapper approach and build directly in Godot. It exports natively to Android and iOS with one click.
-
-No wrapping needed
-Better performance
-Proper game engine for future projects
-Slightly longer initial setup but pays off quickly.
-
-Recommended Path for You
-Day 1  →  Build the game in HTML/JS
-Day 1  →  Make it a PWA (1 extra hour) — share the link immediately
-Week 2 →  Wrap with Capacitor → publish to Google Play
-Month 2 → Get a Mac or use a cloud Mac service → publish to App Store
-What You Need to Publish to Google Play
-Google Play Developer account ($25)
-Your .apk or .aab file (Capacitor generates this)
-App icon (512x512px)
-2–3 screenshots
-Short description
-Content rating questionnaire (important for kids apps — COPPA compliance)
-⚠️ Kids apps have extra rules — both Google and Apple require COPPA compliance for apps targeting under 13. No ads that track, no data collection. Worth knowing upfront.
-
-Want me to build the game now as a PWA-ready HTML file so you can test it on your phone today?
-
-ok makes sense, lets use mobile browser thats fine. Design an app, for helpful 3-5 years old autistic that knows abc, knows shapes knows 1-20 and need to know how to spell or draw, animals frtuis etc or somehting better and interactive and fun
-
-15:37
-
-Architected interactive spelling game tailored for autistic toddlers
-Architected interactive spelling game tailored for autistic toddlers
-Love this direction. Designing for autistic children adds important nuances beyond just "age 3–5." Let me think through this properly.
-
-Key Design Principles for Autistic 3–5 Year Olds
-Predictable loops — same structure every round, no surprises
-No timers, no pressure — self-paced always
-Gentle wrong-answer feedback — never a buzzer or red flash, just a soft wobble
-Sensory control — sound toggle always visible
-Clear cause and effect — tap this → that happens, every time
-Short positive loops — celebrate every small win
-No clutter — one task, one focus per screen
-Familiar categories — animals and fruits are universally engaging for this age
-App Concept: 🐾 "Tap & Spell"
-Since they already know ABC and shapes, the perfect next step is connecting letters to real words they care about — animals, fruits, colors.
-
-Core Game Loop
-Show picture → Child taps letters to spell the word
-         ↓
-Each correct letter: flies into place + sound
-         ↓
-Wrong letter: gentle wobble, no harsh feedback
-         ↓
-Word complete: animal comes alive + big celebration
-         ↓
-Next word
-Full App Design
-🎨 Visual Design
-Background: Soft sky blue — calming, not clinical
-Font: Rounded, bold (like Nunito) — friendly and readable
-Colors: High contrast but warm — no harsh neon
-Animations: Slow and smooth — not jarring or chaotic
-🗂️ Word Categories
-Category	Words (3–4 letters)
-🐾 Animals	CAT, DOG, COW, BEE, ANT, HEN, FOX, PIG
-🍎 Fruits	PLUM, FIG, PEAR, LIME, DATE
-🌈 Colors	RED, BLUE, PINK
-🌿 Nature	SUN, RAIN, TREE, LEAF
-Start with 3-letter words only (CVC: consonant-vowel-consonant). They're easiest to decode and spell.
-
-📱 Screen Layout
-┌─────────────────────────┐
-│  🔊          ★ ★ ★      │  ← sound toggle + stars earned
-│                         │
-│       🐱                │  ← big animal/fruit picture
-│                         │
-│    _ _ _                │  ← blank tiles to fill
-│                         │
-│  [C] [A] [T] [B] [X]   │  ← shuffled letter bank
-└─────────────────────────┘
-Interaction Flow
-Child sees a big picture of a cat
-Hears a gentle voice say "Cat! Can you spell cat?"
-Taps C → flies into first blank, makes a satisfying pop sound
-Taps A → flies into second blank
-Taps T → flies into third blank
-🎉 Cat meows, bounces, confetti falls, star added to top
-Gentle voice says "Amazing! You spelled CAT!"
-After 2 seconds → next word
-❌ Wrong Answer Handling
-Letter tile gently wobbles back to its spot
-No red, no buzzer, no negative sound
-A soft "oops" chime or nothing at all
-After 3 wrong attempts → the correct letter glows softly as a hint
-🌟 Reward System
-Stars collected at top of screen (not a score, just accumulation)
-Every 5 words → a short celebration screen (dancing animals, confetti)
-No "game over" — it just keeps going
-Stars never go down
-🔊 Accessibility Features
-Feature	Detail
-Sound toggle	Always visible, top corner
-Voice narration	Says the word + each letter name
-No time limits	Ever
-Large tap targets	Min 80x80px per letter tile
-High contrast mode	Optional toggle
-Repeat button	Tap picture to hear word again anytime
-📈 Progression (Simple)
-Level 1: 3-letter animal words (CAT, DOG, ANT...)
-Level 2: 3-letter fruit words (FIG, PLUM...)
-Level 3: 4-letter words (DUCK, BEAR, FROG...)
-No locked levels — child moves naturally. Parent can set starting level.
-
-Why This Works Specifically for Autistic Kids
-✅ Predictable — exact same loop every round
-✅ No social pressure — no characters demanding eye contact
-✅ Intrinsically rewarding — spelling triggers the picture coming alive
-✅ Sensory safe — sounds are soft, animations are smooth
-✅ Builds on what they know — ABC is already mastered, this is the next logical step
-✅ Concrete over abstract — real animals/fruits, not abstract concepts
-What I Can Build Right Now
-A fully working mobile browser version with:
-
-8 animal words to start
-Tap-to-spell mechanic
-Letter fly-in animation
-Confetti win state
-Sound toggle
-Works on any phone browser today
-Want me to build it? I can have a working prototype ready in one response.
-
-can we host this on github also to develop and containerise it later stage if neeed, but similar just domain a github io page
-
-15:39
-
-Prepared GitHub Pages deployment instructions for containerization
-Prepared GitHub Pages deployment instructions for containerization
-Great plan. Here's what we'll set up:
-
-The full game as a single index.html (easiest for GitHub Pages)
-Step-by-step to get it live on username.github.io
-Project structure ready for containerization later
-Let me build the game first:
-
-Tap & Spell 🐾 — index.html
-Interactive artifact 
-Now here's exactly how to get it live on GitHub Pages:
-
-GitHub Pages Setup (15 minutes)
-Step 1 — Create the repo
-Repo name: tap-and-spell   (gives you: username.github.io/tap-and-spell)
-          OR
-Repo name: username.github.io  (gives you: username.github.io — your main site)
-Visibility: Public
-✅ Add a README
-Step 2 — Add the file
-Copy the artifact code above → save as index.html
-Upload it to the repo root (drag & drop in GitHub UI, or git push)
-Step 3 — Enable GitHub Pages
-Repo → Settings → Pages
-Source: Deploy from branch
-Branch: main  /  (root)
-Save
-Your URL will be live in ~2 minutes at: https://yourusername.github.io/tap-and-spell
-
-Project Structure (future-ready)
-tap-and-spell/
-├── index.html          ← the game (what you have now)
-├── README.md           ← description + screenshot
-├── Dockerfile          ← add later (nginx serving static)
-├── .github/
-│   └── workflows/
-│       └── deploy.yml  ← auto-deploy on every push (optional)
-When you're ready to containerize, the Dockerfile will be dead simple — just nginx serving the static file:
-
-dockerfile
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html
-EXPOSE 80
-Optional: Auto-deploy on every push
-Create .github/workflows/deploy.yml and GitHub will redeploy automatically every time you push a change — no manual steps needed. Want me to generate that file too?
-
-make it better, some are hard, like optionsfor level 1 easier like main animals cat dog and level 2 and so on, make customisable better voice not static ai voice, and custom app name, like kid1 and kid2 name i will overrride, and make it publish have cv publish need similar publish but unique name not found or can it be hidden if cloudflare is used? https://github.com/Abdinasir94/Abdinasir94.github.io/edit/main/index.html
-
-16:06
-
-Crafting comprehensive improved spelling game with profiles and voice selection
-Crafting comprehensive improved spelling game with profiles and voice selection
-Claude's response was interrupted
-make it better, some are hard, like optionsfor level 1 easier like main animals cat dog and level 2 and so on, make customisable better voice not static ai voice, and custom app name, like kid1 and kid2 name i will overrride, and make it publish have cv publish need similar publish but unique name not found or can it be hidden if cloudflare is used? https://github.com/Abdinasir94/Abdinasir94.github.io/edit/main/index.html
-
-16:13
-
-Architecting progressive levels, customizable profiles, and voice enhancement strategy
-Architecting progressive levels, customizable profiles, and voice enhancement strategy
-Let me fetch your current repo first, then do a full rebuild.
-
-
-Orchestrated artifact completion and deployment strategy considerations
-Orchestrated artifact completion and deployment strategy considerations
-Good, I'll build the full improved version from scratch. Here's everything addressed: better levels, smart voice picker, kid profiles, editable config, and I'll explain the Cloudflare URL strategy after.
-
-Tap & Spell v2 — index.html (GitHub Pages ready)
-Interactive artifact 
-Here's everything that's changed and how to publish:
-
-What's New in v2
-Levels (proper progression):
-
-Level	Name	Words	Distractors
-1	Starter 🌱	CAT, DOG, PIG, COW, HEN, BEE	None — just the real letters shuffled
-2	Explorer 🔍	FOX, OWL, ANT + fruits	+1 fake letter
-3	Adventure 🌟	BEAR, DUCK, FROG, LION...	+2 fake letters
-4	Champion 🏆	KIWI, LIME, MOTH, SWAN...	+3 fake letters
-Level 1 is now genuinely easy — no trick letters, just arrange what's there.
-
-Kid Profiles — each kid tracks their own level and stars independently, auto-saves per session.
-
-Voice picker — Settings shows all voices available on the device. On iPhone you'll see Siri voices (Samantha, Karen), on Android you get Google voices. Pick the best one once and it sticks.
-
-Easy config at the top of the file — edit just these two lines:
-
-js
-const CONFIG = {
-  appName: "Aisha & Omar's Game 🐾",
-  kids: [
-    { name: "Aisha", avatar: "🌸", color: "#FF80AB" },
-    { name: "Omar",  avatar: "🚀", color: "#64B5F6" },
-  ]
-};
-```
-
----
-
-## GitHub → Cloudflare URL Strategy
-
-You have three options ranked by effort:
-
-**Option A — Obscure path (5 min, free)**
-Rename the file from `index.html` to something like `game-abc123.html`. URL becomes:
-`abdinasir94.github.io/game-abc123.html` — not indexed, not guessable.
-
-**Option B — Custom subdomain via Cloudflare (30 min, free)**
-Point a domain you own through Cloudflare → `kids.yourdomain.com` proxies to your GitHub Pages. The GitHub URL is hidden behind your domain.
-```
-kids.yourdomain.com  →  CNAME  →  abdinasir94.github.io
-In GitHub repo Settings → Pages → Custom Domain → kids.yourdomain.com
-
-Option C — Cloudflare Access (password protected, free tier) Same as B, but add a Cloudflare Access policy — anyone visiting the URL gets a login prompt (email OTP or PIN). Free for up to 50 users. This is the proper "hidden" approach.
-
-For a kids app I'd go with Option B — a clean custom subdomain is enough. Want me to generate the _headers and CNAME files for your repo too?
-
-make it kid 1 is 18 months, and kid 2 is 4 years old and kid 1 is girl and kid 2 is boy make it tailoring and fun
-
-16:17
-
-Finalized artifact and prepared tailored explanation
-Finalized artifact and prepared tailored explanation
-Tap & Learn v3 — Tailored (index.html)
-Interactive artifact 
-Here's what's been completely rebuilt and tailored:
-
-What's different for each kid
-Kid 1 — Girl, 18 months (Discover & Tap)
-
-No spelling at all — completely wrong for 18 months
-Tap the big animal/fruit/color/shape → it bounces + voice says "Cat! The cat says… Meow!"
-Pink/rose confetti and sparkle trail on every tap
-Stars earned just by tapping — no wrong answers possible
-Four categories: Animals, Fruits, Colors, Shapes
-Celebrations every 8 taps — very short, very joyful
-Big nav arrows, zero cognitive pressure
-Kid 2 — Boy, 4 years (Tap & Spell)
-
-Level 1: just the real letters shuffled, zero distractors (genuinely easy)
-Level 2 → Level 4 progressively harder
-Blue/teal theme throughout
-Levels up automatically every 6 words
-Hint system (glow) after 3 wrong guesses
-Both kids have their own star count, themed celebrations and colours, and the voice auto-selects the best available on the device (Google UK Female, Samantha, Karen in priority order).
-
-To set the real names — edit 4 lines at top of file
-js
-const CFG = {
-  appName: "Tap & Learn 🌟",
-  kids: [
-    { name:"Aisha", avatar:"👧", age:"18 months", gender:"girl" },
-    { name:"Omar",  avatar:"👦", age:"4 years",   gender:"boy"  },
-  ]
-};
-```
-
----
-
-## GitHub Pages + Cloudflare URL strategy
-
-For your two pages (`/index.html` = kids game, `/cv` or similar = your CV):
-```
-Abdinasir94.github.io/          ← kids game (index.html)
-Abdinasir94.github.io/cv        ← your CV (cv/index.html)
-```
-
-To **hide the GitHub URL** behind Cloudflare with a custom domain:
-1. Add your domain to Cloudflare (free plan works)
-2. In GitHub → Settings → Pages → Custom Domain → `yourdomain.com`
-3. In Cloudflare DNS add:
-```
-CNAME   @   Abdinasir94.github.io   (proxied ✅)
-CNAME   www Abdinasir94.github.io   (proxied ✅)
-The GitHub URL is now completely hidden — visitors only ever see yourdomain.com. The kids game and CV both live on the same domain at different paths. Want me to build the CV page next to match the same clean style?
-
-why does it sound italian, can you make it clear audio to understand not robotic i dont understand the audio
-
-16:26
-
-Diagnosed voice selection bug and devised English language filtering solution
-Diagnosed voice selection bug and devised English language filtering solution
-The issue is the voice picker isn't filtering by English — it's grabbing whatever voice is first on your device, which happens to be Italian. Simple fix: force English-only voices and let you pick visibly.
-
-Tap & Learn v3 — Tailored (index.html)
-Interactive artifact ∙ Version 2 
-Now add the visible voice picker to the home screen so you can test and change it:
-
-Tap & Learn v3 — Tailored (index.html)
-Interactive artifact ∙ Version 3 
-Here's what's fixed and how to get a good voice:
-
-What changed
-Before — the code sorted all voices including Italian, French, German etc. and sometimes picked one of those first.
-
-Now:
-
-English-only filter — only en-* voices are shown (en-GB, en-US, en-AU)
-Ranked priority — Google UK English Female → Samantha → Karen → Daniel etc.
-Visible voice picker on the home screen — you can see the name and test it before playing
-Test button — tap "▶ Test Voice" and it says "Hello! Can you hear me clearly now?" so you know exactly what you're getting
-Best voices by device
-Device	Best voice to pick
-iPhone/iPad	Samantha or Karen (Enhanced)
-Android + Chrome	Google UK English Female
-Samsung	Google UK English Female or Google US English
-Desktop Chrome	Google UK English Female
-On iPhone, go to Settings → Accessibility → Spoken Content → Voices → English and download Samantha (Enhanced) or Karen (Enhanced) — they sound dramatically better than the standard ones and will show up in the picker.
-
-lets deploy this
-
-16:28
-
-Thinking about clarifying deployment context and requirements
-Thinking about clarifying deployment context and requirements
-Let me check your repo first to see what's currently there.
-
-
-Orchestrated direct code deployment via GitHub editor interface
-Orchestrated direct code deployment via GitHub editor interface
-You already have the GitHub editor open. Let me navigate to it and deploy the code directly.
-
-
-Strategized replacing portfolio content with game deployment
-Strategized replacing portfolio content with game deployment
-The editor is open with the current CV content. I'll use JavaScript to replace all of it with the game code in one shot.
-
-
-Investigated editor technology migration and compatibility
-Investigated editor technology migration and compatibility
-GitHub uses Monaco editor now. Let me find it.
-
-
-Identified CodeMirror 6 API for content replacement
-Identified CodeMirror 6 API for content replacement
-It's CodeMirror 6. Let me replace the content using its API.
-
-
-Deliberated multiple deployment methods and API strategies
-Deliberated multiple deployment methods and API strategies
-Good — 2829 chars selected. The GitHub editor is ready. Let me use the GitHub API directly from the authenticated session to update the file cleanly — much more reliable than typing.
-
-
-Pivoted to manual deployment instructions after tool failure
-Pivoted to manual deployment instructions after tool failure
-The browser extension disconnected mid-deploy. No worries — let me give you the fastest manual path. Here's exactly what to do:
-
-Deploy in 3 steps (2 minutes)
-Step 1 — Copy the full game code
-Click the artifact above → Copy button (top right of the code panel)
-
-Step 2 — Replace the file on GitHub
-Go to this URL (already open in your browser):
-
-https://github.com/Abdinasir94/Abdinasir94.github.io/edit/main/index.html
-In the editor:
-
-Press Ctrl+A (select all existing content)
-Press Delete
-Press Ctrl+V (paste the new game)
-Step 3 — Commit
-Click "Commit changes…" (green button, top right)
-Commit message: Deploy Tap & Learn kids game
-Click "Commit changes"
-Your live URL will be:
-
-https://abdinasir94.github.io
-GitHub Pages deploys in ~60 seconds after commit. Refresh that URL and the game is live. Want me to also build a separate /cv page so your portfolio stays accessible at abdinasir94.github.io/cv?
-
-no need to keep https://github.com/Abdinasir94/Abdinasir94.github.io/edit/main/index.html this is for cv, new one that can be perahps private in terms of code, but deploy via github accessaible etc url
-
-16:30
-
-Weighed deployment options for private repo with public access
-Weighed deployment options for private repo with public access
-Perfect plan. New private repo + GitHub Actions to deploy publicly. Let me set it up for you now.
-
-
-Weighed private source code against public deployment options
-Weighed private source code against public deployment options
-Good, the form is ready. I'll fill in the repo name, set visibility, then add README. One important note — GitHub Pages on private repos requires GitHub Pro (paid). Best free strategy: public repo with non-obvious name + Cloudflare proxy hides the URL. Let me set that up.
-
-
-Used Claude in Chrome integration, used a tool
-Used Claude in Chrome integration, used a tool
-Now click description and add it, then scroll down to enable README and create:
-
-
-Used Claude in Chrome integration
-Used Claude in Chrome integration
-Now scroll down and toggle on README, then create:
-
-
-Orchestrated repository setup with description and README configuration
-Orchestrated repository setup with description and README configuration
-Good — name is available ✅. Let me add the description, toggle README on, then create:
-
-
-Used Claude in Chrome integration
-Used Claude in Chrome integration
-Now toggle README on:
-
-
-Debugged interface toggles and form field interactions
-Debugged interface toggles and form field interactions
-Description is still empty — the typing went somewhere else. Let me click directly on it:
-
-
-Used Claude in Chrome integration
-Used Claude in Chrome integration
-Now enable README toggle — let me zoom in to find the exact toggle position:
-
-
-Used Claude in Chrome integration
-Used Claude in Chrome integration
-✅ Description filled, README On, Public visibility. Now create the repo:
-
-
-Used Claude in Chrome integration
-Used Claude in Chrome integration
-✅ Repo created: github.com/Abdinasir94/kids-tap-learn
-
-Now I need to add two files. Here's the complete manual steps to finish the deployment — it's just 3 quick actions:
-
-Step 1 — Add index.html (the game)
-Go to: https://github.com/Abdinasir94/kids-tap-learn
-
-Click "Add file" → "Create new file"
-Name it: index.html
-Paste the game code from the artifact above (copy button top-right)
-Click "Commit changes"
-Step 2 — Enable GitHub Pages
-Go to: Settings → Pages
-
-Source: Deploy from branch
-Branch: main / (root)
-Save
-Step 3 — Your live URL
-https://abdinasir94.github.io/kids-tap-learn
-Live in ~60 seconds after Pages is enabled.
-
-About "hiding" the code — your options
-Option	Cost	Effort	Code visible?
-Public repo (what we created)	Free	Done ✅	Yes, but not indexed
-Cloudflare Pages + private repo	Free	15 min	No
-GitHub Pro	$4/mo	5 min	No
-Best free option: Connect this repo to Cloudflare Pages — it deploys from GitHub, works with private repos for free, and your URL becomes kids-tap-learn.pages.dev or your own domain. Want me to walk through that setup?
-
-just enable and deploy it via accessible for now, later we can move it privatly
-
-16:36
-
-Orchestrated deployment strategy for public repository access
-Orchestrated deployment strategy for public repository access
-On it — I'll add the game file then enable Pages in one go.
-
-
-Orchestrated file creation and content injection strategy
-Orchestrated file creation and content injection strategy
-New file editor is open. First set the filename:
-
-
-Used Claude in Chrome integration
-Used Claude in Chrome integration
-Now inject the full game HTML into the CodeMirror 6 editor via the GitHub API — this is the most reliable approach:
-
-
-Deliberated API authentication strategy for deployment
-Deliberated API authentication strategy for deployment
-Good — I'm authenticated. I'll use the GitHub API directly from the browser session to create the file with the full game content:
-
-
-Deliberated GitHub API authentication and editor integration methods
-Deliberated GitHub API authentication and editor integration methods
-The API needs a token for writes. Let me use the editor directly — I'll inject the content into the CodeMirror 6 instance on the page:
-
-
-Deliberated clipboard and paste insertion techniques for editor access
-Deliberated clipboard and paste insertion techniques for editor access
-Let me try the clipboard paste approach — write to clipboard then trigger paste in the editor:
-
-
-Computer
-Computer
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Tap & Learn 🌟</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --girl:#FF6BAE;--girl-dk:#c2005e;--girl-bg:#FFE4F1;
-  --boy:#4FC3F7;--boy-dk:#0277BD;--boy-bg:#E1F5FE;
-  --green:#6BCB77;--green-dk:#4a9e54;
-  --text:#2C3E50;--sh:rgba(0,0,0,.13);
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden}
-body{font-family:'Nunito','Arial Rounded MT Bold',sans-serif;user-select:none;touch-action:manipulation;display:flex;align-items:center;justify-content:center;background:#87CEEB}
-button{font-family:inherit;cursor:pointer;border:none;outline:none}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #acb6e5 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    overflow-x: hidden;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 10px 0 5px;
+    text-align: center;
+  }
+  #stars-bar {
+    font-size: 1.4rem;
+    color: #ffe066;
+    margin: 4px 0 10px;
+    min-height: 2rem;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  #word-display {
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    padding: 18px 30px;
+    margin: 8px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 500px;
+  }
+  #word-picture {
+    font-size: clamp(3rem, 15vw, 6rem);
+    display: block;
+    margin-bottom: 6px;
+  }
+  #word-label {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    color: #555;
+    font-weight: bold;
+    letter-spacing: 4px;
+  }
+  #speak-btn {
+    background: #7c3aed;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+  }
+  #speak-btn:active { transform: scale(0.95); }
 
-.screen{display:none;flex-direction:column;align-items:center;width:100%;max-width:440px;height:100vh;overflow-y:auto;overflow-x:hidden;position:relative}
-.screen.active{display:flex}
+  #answer-slots {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+    min-height: 72px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .answer-slot {
+    width: 62px;
+    height: 62px;
+    background: rgba(255,255,255,0.7);
+    border: 3px dashed #aaa;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    user-select: none;
+  }
+  .answer-slot.filled { background: #d1fae5; border-color: #10b981; border-style: solid; }
+  .answer-slot.wrong  { background: #fee2e2; border-color: #ef4444; animation: shake 0.4s; }
+  .answer-slot.correct { background: #bbf7d0; border-color: #10b981; }
 
-/* ─── HOME ─── */
-#hs{background:linear-gradient(160deg,#87CEEB,#dff0fb);justify-content:center;padding:24px 20px;gap:14px}
-.logo{font-size:4rem;animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.app-title{font-size:2.3rem;font-weight:900;color:var(--text);text-align:center}
-.app-sub{font-size:1rem;color:#555;text-align:center}
-.kid-cards{display:flex;gap:16px;width:100%;margin-top:4px}
-.kcard{
-  flex:1;border-radius:24px;padding:20px 12px;background:white;
-  box-shadow:0 8px 24px var(--sh);display:flex;flex-direction:column;
-  align-items:center;gap:9px;border:4px solid transparent;cursor:pointer;
-  transition:all .2s cubic-bezier(.34,1.56,.64,1);
-}
-.kcard:active{transform:scale(.93)}
-.kcard.girl.sel{border-color:var(--girl);box-shadow:0 8px 28px rgba(255,107,174,.4)}
-.kcard.boy.sel{border-color:var(--boy);box-shadow:0 8px 28px rgba(79,195,247,.4)}
-.kavatar{font-size:3.6rem;line-height:1}
-.kname{font-size:1.25rem;font-weight:900;color:var(--text)}
-.kage{font-size:.78rem;color:#999;font-weight:700}
-.kbadge{font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;padding:4px 12px;border-radius:50px;color:white;margin-top:2px}
-.girl .kbadge{background:var(--girl)}.boy .kbadge{background:var(--boy)}
-.kmode{font-size:.78rem;color:#888;font-weight:700;text-align:center;line-height:1.3}
-.play-btn{
-  width:100%;padding:17px;border-radius:50px;font-size:1.3rem;font-weight:900;color:white;
-  background:var(--green);box-shadow:0 6px 0 var(--green-dk);transition:transform .1s,box-shadow .1s
-}
-.play-btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--green-dk)}
-.play-btn:disabled{background:#ccc;box-shadow:0 6px 0 #aaa;pointer-events:none}
+  #letter-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+    max-width: 500px;
+  }
+  .tile {
+    width: clamp(60px, 15vw, 72px);
+    height: clamp(60px, 15vw, 72px);
+    background: #fff;
+    border: 3px solid #7c3aed;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: bold;
+    color: #7c3aed;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: transform 0.1s, box-shadow 0.1s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tile:active, .tile.selected {
+    transform: scale(0.93);
+    background: #ede9fe;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .tile.used { opacity: 0.3; pointer-events: none; }
 
-/* ─── DISCOVER (18 months) ─── */
-#ds{background:linear-gradient(160deg,var(--girl-bg),#fff5fb);justify-content:space-between}
-.d-hdr{
-  width:100%;padding:11px 15px;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(255,228,241,.85);backdrop-filter:blur(8px);position:sticky;top:0;z-index:50;
-}
-.d-stars{display:flex;align-items:center;gap:5px;background:white;padding:7px 15px;border-radius:50px;font-size:1.05rem;font-weight:900;color:var(--text);box-shadow:0 2px 8px var(--sh)}
-.d-hbtn{width:46px;height:46px;border-radius:50%;background:white;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px var(--sh);transition:transform .1s}
-.d-hbtn:active{transform:scale(.88)}
-.d-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 16px;gap:14px;width:100%}
-.d-card{
-  background:white;border-radius:36px;padding:22px 20px;
-  box-shadow:0 12px 40px rgba(255,107,174,.25);border:4px solid var(--girl-bg);
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  width:100%;cursor:pointer;transition:transform .15s;position:relative;
-}
-.d-card:active{transform:scale(.95)}
-.d-card.bounce{animation:bigBounce .48s cubic-bezier(.34,1.56,.64,1)}
-@keyframes bigBounce{0%{transform:scale(1)}35%{transform:scale(1.2)}65%{transform:scale(.96)}100%{transform:scale(1)}}
-.d-emoji{font-size:8rem;line-height:1;display:block}
-.d-name{font-size:3rem;font-weight:900;color:var(--text);text-align:center}
-.d-sound{font-size:1.5rem;font-weight:700;color:var(--girl);opacity:0;transition:opacity .3s;min-height:2rem}
-.d-sound.show{opacity:1}
-.tap-hint{font-size:.95rem;color:#e0b0c8;font-weight:700;animation:tapPulse 2s ease infinite}
-@keyframes tapPulse{0%,100%{opacity:.4}50%{opacity:1}}
-.d-nav{display:flex;align-items:center;gap:18px;width:100%;justify-content:center}
-.nav-arr{
-  width:74px;height:74px;border-radius:50%;font-size:2rem;display:flex;align-items:center;justify-content:center;
-  background:white;box-shadow:0 6px 20px rgba(255,107,174,.3);border:3px solid var(--girl-bg);
-  color:var(--girl);transition:transform .1s,box-shadow .1s;
-}
-.nav-arr:active{transform:scale(.87);box-shadow:0 2px 8px var(--sh)}
-.nav-ctr{font-size:.95rem;font-weight:900;color:#c0a0b0;min-width:60px;text-align:center}
-.cat-tabs{display:flex;gap:8px;width:100%;padding:10px 14px 18px;justify-content:center}
-.cat-tab{
-  flex:1;padding:10px 5px;border-radius:16px;font-size:1.35rem;background:rgba(255,255,255,.65);
-  border:3px solid transparent;font-weight:900;transition:all .2s;
-  display:flex;flex-direction:column;align-items:center;gap:3px;
-}
-.tab-lbl{font-size:.62rem;color:#bbb;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-.cat-tab.active{background:white;border-color:var(--girl);box-shadow:0 4px 14px rgba(255,107,174,.25)}
-.cat-tab:active{transform:scale(.9)}
+  #feedback {
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-height: 2.2rem;
+    text-align: center;
+    margin: 6px 0;
+    color: #065f46;
+    transition: opacity 0.3s;
+  }
+  #level-badge {
+    background: rgba(255,255,255,0.85);
+    border-radius: 30px;
+    padding: 5px 18px;
+    font-size: 0.95rem;
+    color: #7c3aed;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
 
-/* ─── SPELL GAME (4 years) ─── */
-#ss{background:linear-gradient(160deg,var(--boy-bg),#f0fbff);justify-content:flex-start}
-.s-hdr{
-  width:100%;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(225,245,254,.85);backdrop-filter:blur(8px);position:sticky;top:0;z-index:50;gap:8px
-}
-.s-hbtn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.85);font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px var(--sh);transition:transform .1s}
-.s-hbtn:active{transform:scale(.88)}
-.s-hdr-ctr{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
-.lvl-badge{font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;color:white;padding:3px 14px;border-radius:50px}
-.s-stars{font-size:.9rem;font-weight:900;color:var(--text);display:flex;align-items:center;gap:5px}
-.s-body{flex:1;display:flex;flex-direction:column;align-items:center;gap:13px;padding:13px 15px 20px;width:100%}
-.w-card{
-  background:white;border-radius:28px;padding:15px 22px;
-  box-shadow:0 8px 28px rgba(79,195,247,.22);text-align:center;width:100%;
-  cursor:pointer;border:4px solid var(--boy-bg);transition:transform .25s cubic-bezier(.34,1.56,.64,1);
-}
-.w-card:active{transform:scale(.95)}
-.w-emoji{font-size:6rem;line-height:1.1;display:block}
-.w-card-lbl{font-size:.72rem;color:#aaa;margin-top:3px}
-.lvl-hint{font-size:.83rem;color:#888;background:rgba(255,255,255,.7);padding:5px 16px;border-radius:50px;font-weight:700}
-.slots{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.slot{
-  width:58px;height:58px;border-radius:14px;border:3px dashed #90CAF9;
-  background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;
-  font-size:1.85rem;font-weight:900;color:var(--text);transition:all .25s;
-}
-.slot.filled{border-style:solid;border-color:var(--boy);background:white;box-shadow:0 4px 14px rgba(79,195,247,.4)}
-.slot.pop{animation:popIn .35s cubic-bezier(.34,1.56,.64,1) both}
-@keyframes popIn{0%{transform:scale(0) rotate(-15deg)}100%{transform:scale(1) rotate(0)}}
-.lbank{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:13px;background:rgba(255,255,255,.45);border-radius:24px;width:100%}
-.lbtn{min-width:65px;height:65px;padding:0 10px;border-radius:16px;font-size:1.7rem;font-weight:900;color:white;box-shadow:0 5px 0 rgba(0,0,0,.17);transition:transform .08s,box-shadow .08s,opacity .2s}
-.lbtn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.17)}
-.lbtn.used{opacity:.2;pointer-events:none}
-.lbtn.wobble{animation:wobble .45s ease}
-@keyframes wobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-12deg) scale(1.1)}40%{transform:rotate(9deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(3deg)}}
-.lbtn.hint{animation:hintPulse 1s ease infinite}
-@keyframes hintPulse{0%,100%{box-shadow:0 5px 0 rgba(0,0,0,.17)}50%{box-shadow:0 0 0 7px rgba(255,215,0,.55),0 5px 0 rgba(0,0,0,.17)}}
-.prog-wrap{width:100%;background:rgba(255,255,255,.5);border-radius:50px;height:12px;overflow:hidden}
-.prog-bar{height:100%;background:var(--boy);border-radius:50px;transition:width .4s cubic-bezier(.34,1.56,.64,1)}
-
-/* ─── OVERLAYS ─── */
-.ov{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:300;opacity:0;pointer-events:none;transition:opacity .28s;padding:28px;text-align:center}
-.ov.show{opacity:1;pointer-events:all}
-.ov-gi{background:rgba(255,228,241,.97)}.ov-bo{background:rgba(225,245,254,.97)}
-.ov-ico{font-size:5rem;animation:celebBounce .58s ease infinite alternate}
-@keyframes celebBounce{from{transform:scale(1)}to{transform:scale(1.13)}}
-.ov-title{font-size:2rem;font-weight:900;color:var(--text);margin:12px 0 5px}
-.ov-sub{font-size:1.05rem;color:#666;margin-bottom:22px}
-.ov-btn{padding:15px 44px;color:white;border-radius:50px;font-size:1.15rem;font-weight:900;font-family:inherit;transition:transform .1s,box-shadow .1s;margin-bottom:12px}
-.ov-btn.gi{background:var(--girl);box-shadow:0 6px 0 var(--girl-dk)}
-.ov-btn.bo{background:var(--boy);box-shadow:0 6px 0 var(--boy-dk)}
-.ov-btn:active{transform:translateY(4px)}
-.ov-btn.sec{background:#e0e0e0;box-shadow:0 6px 0 #bbb;color:var(--text)}
-.ov-btn.sec:active{box-shadow:0 2px 0 #bbb}
-
-/* word flash */
-.wf{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:150}
-.wf-txt{font-size:2.5rem;font-weight:900;opacity:0;transform:scale(.5)}
-.wf-txt.gi{color:var(--girl);text-shadow:0 4px 16px rgba(255,107,174,.4)}
-.wf-txt.bo{color:var(--boy);text-shadow:0 4px 16px rgba(79,195,247,.4)}
-.wf-txt.show{animation:flashW 1.4s ease forwards}
-@keyframes flashW{0%{opacity:0;transform:scale(.5)}30%{opacity:1;transform:scale(1.22)}65%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
-
-/* confetti */
-.cf-wrap{position:fixed;inset:0;pointer-events:none;z-index:200}
-.cp{position:absolute;border-radius:2px;animation:fall linear forwards}
-@keyframes fall{0%{transform:translateY(-30px) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}
-
-/* sparkle */
-.spark{position:fixed;pointer-events:none;z-index:250;font-size:1.8rem;animation:sparkUp .75s ease forwards}
-@keyframes sparkUp{0%{opacity:1;transform:scale(.5) translateY(0)}100%{opacity:0;transform:scale(1.4) translateY(-55px)}}
+  /* Celebration overlay */
+  #celebration {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 100;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  #celebration.show { display: flex; }
+  #celebration .bubble {
+    background: #fff;
+    border-radius: 24px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    animation: popIn 0.5s ease-out;
+  }
+  #celebration .emoji-big { font-size: 4rem; }
+  #celebration h2 { font-size: 2rem; color: #7c3aed; margin: 10px 0 6px; }
+  #celebration p { font-size: 1.1rem; color: #555; margin-bottom: 16px; }
+  #celebration button {
+    background: #7c3aed; color: #fff; border: none;
+    border-radius: 50px; padding: 12px 30px;
+    font-size: 1.1rem; cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  #confetti-canvas {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 99;
+  }
+  #sound-toggle {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(255,255,255,0.8);
+    border: none; border-radius: 50%;
+    width: 44px; height: 44px;
+    font-size: 1.3rem; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 200;
+  }
+  @keyframes shake {
+    0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)}
+  }
+  @keyframes popIn {
+    0%{transform:scale(0.5);opacity:0} 100%{transform:scale(1);opacity:1}
+  }
 </style>
 </head>
 <body>
 
-<!-- ═══════════ HOME ═══════════ -->
-<div class="screen active" id="hs">
-  <div class="logo">🌟</div>
-  <div class="app-title" id="appTitle">Tap &amp; Learn</div>
-  <div class="app-sub">Who is playing today? 👇</div>
-  <div class="kid-cards">
-    <!-- Kid 1 — girl 18 months -->
-    <div class="kcard girl" id="kc0" onclick="selectKid(0)">
-      <div class="kavatar" id="kav0">👧</div>
-      <div class="kname" id="kn0">Kid 1</div>
-      <div class="kage">18 months</div>
-      <div class="kbadge">Little Explorer</div>
-      <div class="kmode">Tap animals &amp; hear sounds</div>
-    </div>
-    <!-- Kid 2 — boy 4 years -->
-    <div class="kcard boy" id="kc1" onclick="selectKid(1)">
-      <div class="kavatar" id="kav1">👦</div>
-      <div class="kname" id="kn1">Kid 2</div>
-      <div class="kage">4 years</div>
-      <div class="kbadge">Spell Master</div>
-      <div class="kmode">Spell words &amp; level up!</div>
-    </div>
-  </div>
-  <button class="play-btn" id="playBtn" disabled onclick="startGame()">Let's Play! 🎉</button>
+<button id="sound-toggle" title="Toggle sound">🔊</button>
+<h1>Tap &amp; Learn 🌟</h1>
+<div id="stars-bar"></div>
+<div id="level-badge"></div>
 
-  <div style="width:100%;background:rgba(255,255,255,0.7);border-radius:20px;padding:14px 16px;margin-top:2px">
-    <div style="font-size:.75rem;font-weight:900;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">🔊 Voice — pick a clear English one</div>
-    <select id="voicePicker" onchange="changeVoice()"
-      style="width:100%;padding:10px 12px;border-radius:14px;border:2px solid #e0e0e0;font-family:inherit;font-size:.9rem;font-weight:700;color:#2C3E50;background:white;appearance:none;margin-bottom:10px">
-      <option>Loading voices…</option>
-    </select>
-    <button onclick="testVoice()"
-      style="width:100%;padding:10px;border-radius:14px;background:#6BCB77;color:white;font-size:.95rem;font-weight:900;font-family:inherit;box-shadow:0 4px 0 #4a9e54">
-      ▶ Test Voice
-    </button>
-  </div>
+<div id="word-display">
+  <span id="word-picture"></span>
+  <div id="word-label"></div>
+  <button id="speak-btn">🔉 Say it again</button>
 </div>
 
-<!-- ═══════════ DISCOVER GAME (18 months) ═══════════ -->
-<div class="screen" id="ds">
-  <div class="d-hdr">
-    <button class="d-hbtn" onclick="goHome()">🏠</button>
-    <div class="d-stars">⭐ <span id="dStar">0</span></div>
-    <button class="d-hbtn" id="dSnd" onclick="toggleSound()">🔊</button>
-  </div>
-  <div class="d-body">
-    <div class="d-card" id="dCard" onclick="discoverTap(event)">
-      <span class="d-emoji" id="dEmo">🐱</span>
-      <div class="d-name" id="dNm">Cat</div>
-      <div class="d-sound" id="dSnd2">Meow! 🎵</div>
-      <div class="tap-hint">Tap me! 👆</div>
-    </div>
-    <div class="d-nav">
-      <button class="nav-arr" onclick="dNav(-1)">◀</button>
-      <div class="nav-ctr" id="dCtr">1 / 14</div>
-      <button class="nav-arr" onclick="dNav(1)">▶</button>
-    </div>
-  </div>
-  <div class="cat-tabs">
-    <button class="cat-tab active" id="tab-animals" onclick="setCat('animals')">🐾<div class="tab-lbl">Animals</div></button>
-    <button class="cat-tab" id="tab-fruits"  onclick="setCat('fruits')">🍎<div class="tab-lbl">Fruits</div></button>
-    <button class="cat-tab" id="tab-colors"  onclick="setCat('colors')">🎨<div class="tab-lbl">Colors</div></button>
-    <button class="cat-tab" id="tab-shapes"  onclick="setCat('shapes')">⭐<div class="tab-lbl">Shapes</div></button>
-  </div>
-</div>
+<div id="feedback"></div>
+<div id="answer-slots"></div>
+<div id="letter-tiles"></div>
 
-<!-- ═══════════ SPELL GAME (4 years) ═══════════ -->
-<div class="screen" id="ss">
-  <div class="s-hdr">
-    <button class="s-hbtn" onclick="goHome()">🏠</button>
-    <div class="s-hdr-ctr">
-      <div class="lvl-badge" id="lvlBadge">Level 1</div>
-      <div class="s-stars">⭐ <span id="sStar">0</span> <span id="sKidName" style="font-size:.78rem;color:#888;margin-left:4px"></span></div>
-    </div>
-    <button class="s-hbtn" id="sSnd" onclick="toggleSound()">🔊</button>
-  </div>
-  <div class="s-body">
-    <div class="w-card" id="wCard" onclick="rptWord()">
-      <span class="w-emoji" id="wEmo">🐱</span>
-      <div class="w-card-lbl">tap to hear 🔉</div>
-    </div>
-    <div class="lvl-hint" id="lvlHint" style="display:none"></div>
-    <div class="slots" id="slots"></div>
-    <div class="lbank" id="lbank"></div>
-    <div class="prog-wrap"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
-  </div>
-</div>
+<canvas id="confetti-canvas"></canvas>
 
-<!-- flash -->
-<div class="wf"><div class="wf-txt" id="wfTxt"></div></div>
-<div class="cf-wrap" id="cf"></div>
-
-<!-- celebration overlay -->
-<div class="ov" id="celebOv">
-  <div class="ov-ico" id="cIco">🎉</div>
-  <div class="ov-title" id="cTitle">Amazing!</div>
-  <div class="ov-sub" id="cSub">Well done!</div>
-  <button class="ov-btn" id="cContinue" onclick="celebNext()">Keep Going! 🚀</button>
-  <button class="ov-btn sec" onclick="goHome()">Change Player</button>
+<div id="celebration">
+  <div class="bubble">
+    <div class="emoji-big">🎉</div>
+    <h2 id="cel-title">Amazing!</h2>
+    <p id="cel-msg">You spelled it right!</p>
+    <button id="next-btn">Next Word ▶</button>
+  </div>
 </div>
 
 <script>
-/* ╔══════════════════════════════════════════════╗
-   ║  EDIT NAMES HERE — change Kid1 / Kid2       ║
-   ╚══════════════════════════════════════════════╝ */
-const CFG = {
-  appName: "Tap & Learn 🌟",
-  kids: [
-    { name:"Kid 1", avatar:"👧", age:"18 months", gender:"girl" },
-    { name:"Kid 2", avatar:"👦", age:"4 years",   gender:"boy"  },
-  ]
-};
-
-/* ── DISCOVER DATA ── */
-const DIS = {
-  animals:[
-    {e:"🐱",n:"Cat",    s:"Meow!"},   {e:"🐶",n:"Dog",     s:"Woof!"},
-    {e:"🐄",n:"Cow",    s:"Moo!"},    {e:"🐷",n:"Pig",     s:"Oink!"},
-    {e:"🐔",n:"Hen",    s:"Cluck!"},  {e:"🐑",n:"Sheep",   s:"Baa!"},
-    {e:"🐴",n:"Horse",  s:"Neigh!"},  {e:"🐸",n:"Frog",    s:"Ribbit!"},
-    {e:"🦁",n:"Lion",   s:"Roar!"},   {e:"🐘",n:"Elephant",s:"Toot!"},
-    {e:"🦆",n:"Duck",   s:"Quack!"},  {e:"🐝",n:"Bee",     s:"Buzz!"},
-    {e:"🐰",n:"Rabbit", s:"Squeak!"}, {e:"🐻",n:"Bear",    s:"Growl!"},
-  ],
-  fruits:[
-    {e:"🍎",n:"Apple",      s:"Yummy!"}, {e:"🍌",n:"Banana",  s:"Yummy!"},
-    {e:"🍊",n:"Orange",     s:"Yummy!"}, {e:"🍓",n:"Strawberry",s:"Yummy!"},
-    {e:"🍇",n:"Grapes",     s:"Yummy!"}, {e:"🍉",n:"Watermelon",s:"Yummy!"},
-    {e:"🥝",n:"Kiwi",       s:"Yummy!"}, {e:"🍋",n:"Lemon",   s:"Sour!"},
-    {e:"🍑",n:"Peach",      s:"Yummy!"}, {e:"🍒",n:"Cherry",  s:"Yummy!"},
-  ],
-  colors:[
-    {e:"🔴",n:"Red",    s:"Red!"},    {e:"🔵",n:"Blue",   s:"Blue!"},
-    {e:"🟡",n:"Yellow", s:"Yellow!"}, {e:"🟢",n:"Green",  s:"Green!"},
-    {e:"🟣",n:"Purple", s:"Purple!"}, {e:"🟠",n:"Orange", s:"Orange!"},
-    {e:"🩷",n:"Pink",   s:"Pink!"},   {e:"⬜",n:"White",  s:"White!"},
-  ],
-  shapes:[
-    {e:"⭕",n:"Circle",   s:"Round!"},    {e:"🔷",n:"Diamond",  s:"Diamond!"},
-    {e:"🔺",n:"Triangle", s:"Triangle!"}, {e:"⬛",n:"Square",   s:"Square!"},
-    {e:"⭐",n:"Star",     s:"Star!"},     {e:"❤️",n:"Heart",    s:"Heart!"},
-    {e:"🌙",n:"Moon",     s:"Moon!"},     {e:"☁️",n:"Cloud",    s:"Cloud!"},
-  ],
-};
-
-/* ── SPELL LEVELS ── */
-const LVLS=[
-  {
-    id:1,name:"Starter 🌱",col:"#4FC3F7",dist:0,
-    hint:"Tap the letters to spell it!",
-    words:[{w:"CAT",e:"🐱"},{w:"DOG",e:"🐶"},{w:"PIG",e:"🐷"},{w:"COW",e:"🐄"},{w:"HEN",e:"🐔"},{w:"BEE",e:"🐝"}]
-  },
-  {
-    id:2,name:"Explorer 🔍",col:"#29B6F6",dist:1,
-    hint:"One sneaky extra letter!",
-    words:[{w:"FOX",e:"🦊"},{w:"OWL",e:"🦉"},{w:"ANT",e:"🐜"},{w:"RAM",e:"🐏"},{w:"FIG",e:"🫐"},{w:"YAM",e:"🍠"}]
-  },
-  {
-    id:3,name:"Adventure 🌟",col:"#0288D1",dist:2,hint:"",
-    words:[{w:"BEAR",e:"🐻"},{w:"DUCK",e:"🦆"},{w:"FROG",e:"🐸"},{w:"LION",e:"🦁"},{w:"FISH",e:"🐟"},{w:"CRAB",e:"🦀"},{w:"PEAR",e:"🍐"},{w:"PLUM",e:"🍑"}]
-  },
-  {
-    id:4,name:"Champion 🏆",col:"#01579B",dist:3,hint:"",
-    words:[{w:"KIWI",e:"🥝"},{w:"LIME",e:"🍋"},{w:"GOAT",e:"🐐"},{w:"SWAN",e:"🦢"},{w:"MOTH",e:"🦋"},{w:"WOLF",e:"🐺"},{w:"CORN",e:"🌽"},{w:"SLUG",e:"🐌"}]
-  },
+const LEVELS = [
+  { name: 'Level 1 – Animals', words: [
+    {w:'CAT',e:'🐱'},{w:'DOG',e:'🐶'},{w:'ANT',e:'🐜'},
+    {w:'BEE',e:'🐝'},{w:'OWL',e:'🦉'},{w:'HEN',e:'🐔'},
+    {w:'COW',e:'🐄'},{w:'PIG',e:'🐷'},{w:'FOX',e:'🦊'},
+    {w:'BAT',e:'🦇'}
+  ]},
+  { name: 'Level 2 – Fruits', words: [
+    {w:'FIG',e:'🍑'},{w:'YAM',e:'🍠'},{w:'LIME',e:'🍋'},
+    {w:'PLUM',e:'🟣'},{w:'KIWI',e:'🥝'},{w:'PEAR',e:'🍐'},
+    {w:'GRAPE',e:'🍇'},{w:'MANGO',e:'🥭'},{w:'APPLE',e:'🍎'},
+    {w:'MELON',e:'🍈'}
+  ]},
+  { name: 'Level 3 – Big Animals', words: [
+    {w:'DUCK',e:'🦆'},{w:'BEAR',e:'🐻'},{w:'FROG',e:'🐸'},
+    {w:'LION',e:'🦁'},{w:'WOLF',e:'🐺'},{w:'FISH',e:'🐟'},
+    {w:'CRAB',e:'🦀'},{w:'DEER',e:'🦌'},{w:'SEAL',e:'🦭'},
+    {w:'GOAT',e:'🐐'}
+  ]}
 ];
-const LBCOLS=["#FF8C69","#6BCB77","#4FC3F7","#FFD700","#B39DDB","#FF80AB","#80DEEA","#FFAB40","#FF6B6B","#A8E6CF"];
-const GCOLS=["#FF6BAE","#FFD7E9","#B39DDB","#FFD700","#FF6B6B","#FFAB40","#F48FB1","#F8BBD0"];
-const BCOLS=["#4FC3F7","#B3E5FC","#6BCB77","#FFD700","#80DEEA","#FFAB40","#64B5F6","#81D4FA"];
 
-/* ── STATE ── */
-let G={
-  kid:-1,soundOn:true,voice:null,
-  stars:[0,0],
-  dCat:'animals',dItems:[],dIdx:0,dTaps:0,
-  sLvl:0,sWords:[],sIdx:0,sWord:null,sFilled:[],sWrong:0,sDone:0,
-  lastCeleb:'',
-};
+let level = 0, wordIdx = 0, stars = 0;
+let currentWord = '', answerSoFar = [], wrongAttempts = 0;
+let soundOn = true;
+let shuffledWords = [];
+let levelWordIdx = 0;
 
-/* ── VOICE ── */
-let allVoices=[];
-function loadVoices(){
-  const raw=speechSynthesis.getVoices();
-  // ① English only
-  const eng=raw.filter(v=>v.lang.toLowerCase().startsWith('en'));
-  // ② Priority order — best natural voices first
-  const PREF=[
-    'Google UK English Female','Google UK English Male',
-    'Google US English',
-    'Samantha','Karen','Moira','Tessa','Fiona','Daniel',
-    'Martha','Serena','Oliver','Arthur',
-    'en-GB','en-AU','en-US','en-IE'
-  ];
-  allVoices=[...eng].sort((a,b)=>{
-    const ai=PREF.findIndex(p=>a.name.includes(p)||a.lang.includes(p));
-    const bi=PREF.findIndex(p=>b.name.includes(p)||b.lang.includes(p));
-    if(ai===-1&&bi===-1) return 0;
-    if(ai===-1) return 1;
-    if(bi===-1) return -1;
-    return ai-bi;
-  });
-  // fallback: if no English voices found at all, use everything
-  if(!allVoices.length) allVoices=raw;
-  if(!G.voice&&allVoices.length) G.voice=allVoices[0];
-  buildVoicePicker();
-}
-if(window.speechSynthesis){ speechSynthesis.onvoiceschanged=loadVoices; loadVoices(); }
-
-function buildVoicePicker(){
-  const sel=document.getElementById('voicePicker');
-  if(!sel||!allVoices.length) return;
-  sel.innerHTML='';
-  allVoices.forEach((v,i)=>{
-    const o=document.createElement('option');
-    o.value=i;
-    o.textContent=`${v.name} (${v.lang})`;
-    sel.appendChild(o);
-  });
-  sel.value='0';
-}
-function changeVoice(){
-  const i=parseInt(document.getElementById('voicePicker').value);
-  if(allVoices[i]){ G.voice=allVoices[i]; testVoice(); }
-}
-function testVoice(){
-  speak('Hello! Can you hear me clearly now?');
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
 }
 
-/* ── AUDIO ── */
-let ax;
-const ac=()=>{ if(!ax) ax=new(window.AudioContext||window.webkitAudioContext)(); return ax; };
-function tone(f,d,tp='sine',v=0.22){
-  if(!G.soundOn)return;
-  try{const c=ac(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.type=tp;o.frequency.value=f;g.gain.setValueAtTime(v,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.start();o.stop(c.currentTime+d)}catch(e){}
-}
-const sfxDisc =()=>{tone(523,.12);setTimeout(()=>tone(784,.18),100)};
-const sfxOk   =()=>{tone(523,.1);setTimeout(()=>tone(659,.1),80);setTimeout(()=>tone(784,.18),160)};
-const sfxBad  =()=>tone(200,.28,'sawtooth',.05);
-const sfxWin  =()=>{[523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.24),i*95))};
-const sfxNav  =()=>tone(440,.1,'sine',.14);
-
-function speak(txt,delay=0){
-  if(!G.soundOn||!window.speechSynthesis)return;
-  setTimeout(()=>{
-    speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(txt);
-    if(G.voice) u.voice=G.voice;
-    u.rate=0.76;u.pitch=1.2;u.volume=1;
-    speechSynthesis.speak(u);
-  },delay);
-}
-function speakSequence(parts,delays){
-  parts.forEach((p,i)=>{
-    setTimeout(()=>{
-      if(!G.soundOn||!window.speechSynthesis)return;
-      const u=new SpeechSynthesisUtterance(p);
-      if(G.voice) u.voice=G.voice;
-      u.rate=0.76;u.pitch=1.2;u.volume=1;
-      speechSynthesis.speak(u);
-    },delays[i]||0);
-  });
+function speak(text) {
+  if (!soundOn) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.85; u.pitch = 1.2;
+  window.speechSynthesis.speak(u);
 }
 
-/* ── SCREENS ── */
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function renderStars() {
+  document.getElementById('stars-bar').textContent = '⭐'.repeat(Math.min(stars, 20));
+}
 
-/* ── HOME ── */
-(function initHome(){
-  for(let i=0;i<2;i++){
-    document.getElementById(`kav${i}`).textContent=CFG.kids[i].avatar;
-    document.getElementById(`kn${i}`).textContent=CFG.kids[i].name;
+function renderLevel() {
+  document.getElementById('level-badge').textContent = LEVELS[level].name;
+}
+
+function loadWord() {
+  const entry = shuffledWords[levelWordIdx];
+  currentWord = entry.w;
+  answerSoFar = new Array(currentWord.length).fill('');
+  wrongAttempts = 0;
+  document.getElementById('word-picture').textContent = entry.e;
+  document.getElementById('word-label').textContent = '_'.repeat(currentWord.length).split('').join('  ');
+  document.getElementById('feedback').textContent = '';
+  renderAnswerSlots();
+  renderTiles();
+  speak(currentWord.split('').join('... '));
+}
+
+function renderAnswerSlots() {
+  const c = document.getElementById('answer-slots');
+  c.innerHTML = '';
+  for (let i = 0; i < currentWord.length; i++) {
+    const s = document.createElement('div');
+    s.className = 'answer-slot' + (answerSoFar[i] ? ' filled' : '');
+    s.textContent = answerSoFar[i] || '';
+    s.dataset.idx = i;
+    s.addEventListener('click', () => removeFromSlot(i));
+    c.appendChild(s);
   }
-  document.getElementById('appTitle').textContent=CFG.appName;
-  document.title=CFG.appName;
-})();
-
-function selectKid(i){
-  G.kid=i;
-  document.querySelectorAll('.kcard').forEach((c,j)=>c.classList.toggle('sel',j===i));
-  document.getElementById('playBtn').disabled=false;
+  const filled = answerSoFar.join('');
+  document.getElementById('word-label').textContent =
+    currentWord.split('').map((ch,i) => answerSoFar[i] ? ch : '_').join('  ');
 }
 
-function startGame(){
-  if(G.kid<0)return;
-  G.kid===0?startDiscover():startSpell();
+function renderTiles() {
+  const pool = shuffle(currentWord.split('').concat(getExtraLetters(currentWord)));
+  const c = document.getElementById('letter-tiles');
+  c.innerHTML = '';
+  pool.forEach((letter, i) => {
+    const t = document.createElement('div');
+    t.className = 'tile';
+    t.textContent = letter;
+    t.dataset.key = i;
+    t.addEventListener('click', () => tapTile(t, letter));
+    c.appendChild(t);
+  });
 }
 
-function goHome(){
-  speechSynthesis.cancel();
-  document.getElementById('celebOv').classList.remove('show');
-  G.kid=-1;
-  document.querySelectorAll('.kcard').forEach(c=>c.classList.remove('sel'));
-  document.getElementById('playBtn').disabled=true;
-  showScreen('hs');
+function getExtraLetters(word) {
+  const extras = 'AEIOURSTLNMD';
+  const result = [];
+  const count = Math.max(2, 5 - word.length);
+  for (let i = 0; i < count; i++) {
+    result.push(extras[Math.floor(Math.random() * extras.length)]);
+  }
+  return result;
 }
 
-/* ══════════════════════════════════════════
-   DISCOVER GAME — 18 months girl
-═══════════════════════════════════════════ */
-function startDiscover(){
-  G.dTaps=0; G.dCat='animals';
-  document.getElementById('dStar').textContent=G.stars[0];
-  setCat('animals',true);
-  showScreen('ds');
-  setTimeout(()=>speakDiscItem(),700);
+function tapTile(tileEl, letter) {
+  if (tileEl.classList.contains('used')) return;
+  const nextEmpty = answerSoFar.findIndex(s => s === '');
+  if (nextEmpty === -1) return;
+  tileEl.classList.add('used');
+  answerSoFar[nextEmpty] = letter;
+  renderAnswerSlots();
+  if (soundOn) speak(letter);
+  if (!answerSoFar.includes('')) checkAnswer();
 }
 
-function setCat(cat,silent=false){
-  G.dCat=cat; G.dItems=[...DIS[cat]]; G.dIdx=0;
-  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(`tab-${cat}`).classList.add('active');
-  renderDisc();
-  if(!silent){sfxNav();setTimeout(speakDiscItem,400);}
+function removeFromSlot(idx) {
+  if (!answerSoFar[idx]) return;
+  answerSoFar[idx] = '';
+  renderAnswerSlots();
+  // Re-enable the tile that was used for this slot
+  const tiles = document.querySelectorAll('.tile.used');
+  if (tiles.length) tiles[tiles.length - 1].classList.remove('used');
 }
 
-function renderDisc(){
-  const it=G.dItems[G.dIdx];
-  document.getElementById('dEmo').textContent=it.e;
-  document.getElementById('dNm').textContent=it.n;
-  const se=document.getElementById('dSnd2');
-  se.textContent=it.s+' 🎵'; se.classList.remove('show');
-  document.getElementById('dCtr').textContent=`${G.dIdx+1} / ${G.dItems.length}`;
-}
-
-function speakDiscItem(){
-  const it=G.dItems[G.dIdx];
-  // "Cat! The cat says... Meow!"
-  const hasSnd=!['Yummy!','Sour!','Round!','Square!','Triangle!','Diamond!','Star!','Heart!','Moon!','Cloud!','Red!','Blue!','Yellow!','Green!','Purple!','Orange!','Pink!','White!'].includes(it.s);
-  if(hasSnd){
-    speakSequence([it.n+'!',`The ${it.n.toLowerCase()} says... ${it.s}`],[0,900]);
-  } else if(it.s==='Yummy!'||it.s==='Sour!'){
-    speakSequence([it.n+'!','Yummy yummy!'],[0,800]);
+function checkAnswer() {
+  const attempt = answerSoFar.join('');
+  if (attempt === currentWord) {
+    onCorrect();
   } else {
-    speak(it.n+'!');
+    wrongAttempts++;
+    if (wrongAttempts >= 3) {
+      showHint();
+    } else {
+      showWrong();
+      setTimeout(() => {
+        answerSoFar = new Array(currentWord.length).fill('');
+        document.querySelectorAll('.tile').forEach(t => t.classList.remove('used'));
+        renderAnswerSlots();
+      }, 700);
+    }
   }
 }
 
-function discoverTap(e){
-  const it=G.dItems[G.dIdx];
-  const card=document.getElementById('dCard');
-  card.classList.remove('bounce'); void card.offsetWidth; card.classList.add('bounce');
-  setTimeout(()=>card.classList.remove('bounce'),520);
-
-  document.getElementById('dSnd2').classList.add('show');
-  sfxDisc();
-  G.stars[0]++;
-  document.getElementById('dStar').textContent=G.stars[0];
-  G.dTaps++;
-
-  speechSynthesis.cancel();
-  speakDiscItem();
-  spawnSparks(e.clientX, e.clientY, GCOLS);
-
-  if(G.dTaps%4===0) miniCF(GCOLS);
-  if(G.dTaps>0&&G.dTaps%8===0) setTimeout(()=>showCeleb('disc'),600);
-}
-
-function dNav(dir){
-  sfxNav();
-  G.dIdx=(G.dIdx+dir+G.dItems.length)%G.dItems.length;
-  document.getElementById('dSnd2').classList.remove('show');
-  renderDisc();
-  setTimeout(speakDiscItem,400);
-}
-
-/* ══════════════════════════════════════════
-   SPELL GAME — 4 years boy
-═══════════════════════════════════════════ */
-function startSpell(){
-  G.sLvl=0; G.sDone=0;
-  document.getElementById('sStar').textContent=G.stars[1];
-  document.getElementById('sKidName').textContent=CFG.kids[1].name;
-  buildSpellList(); updateBadge(); loadSpellWord();
-  showScreen('ss');
-}
-
-function buildSpellList(){
-  G.sWords=shuffle([...LVLS[G.sLvl].words]); G.sIdx=0;
-}
-
-function updateBadge(){
-  const lv=LVLS[G.sLvl];
-  const b=document.getElementById('lvlBadge');
-  b.textContent=`Level ${lv.id} · ${lv.name}`;
-  b.style.background=lv.col;
-}
-
-function loadSpellWord(){
-  if(G.sIdx>=G.sWords.length) G.sIdx=0;
-  const wo=G.sWords[G.sIdx];
-  G.sWord=wo; G.sFilled=new Array(wo.w.length).fill(null); G.sWrong=0;
-
-  document.getElementById('wEmo').textContent=wo.e;
-  const card=document.getElementById('wCard');
-  card.style.transition='none'; card.style.transform='scale(.75) translateY(8px)';
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    card.style.transition='transform .35s cubic-bezier(.34,1.56,.64,1)'; card.style.transform='';
-  }));
-
-  const lv=LVLS[G.sLvl];
-  const hEl=document.getElementById('lvlHint');
-  if(lv.hint){hEl.textContent=lv.hint;hEl.style.display='';}else hEl.style.display='none';
-
-  const sEl=document.getElementById('slots'); sEl.innerHTML='';
-  for(let i=0;i<wo.w.length;i++){
-    const s=document.createElement('div'); s.className='slot'; s.id=`sl${i}`; sEl.appendChild(s);
+function showWrong() {
+  const slots = document.querySelectorAll('.answer-slot');
+  slots.forEach(s => s.classList.add('wrong'));
+  setTimeout(() => slots.forEach(s => s.classList.remove('wrong')), 600);
+  document.getElementById('feedback').textContent = "Try again! 🙂";
+  if (soundOn) {
+    const u = new SpeechSynthesisUtterance("Try again");
+    u.rate = 0.9; window.speechSynthesis.speak(u);
   }
-
-  const letters=shuffle([...wo.w.split(''),...makeDist(wo.w,lv.dist)]);
-  const bk=document.getElementById('lbank'); bk.innerHTML='';
-  letters.forEach((l,i)=>{
-    const b=document.createElement('button');
-    b.className='lbtn'; b.textContent=l;
-    b.style.background=LBCOLS[i%LBCOLS.length];
-    b.dataset.l=l; b.id=`lb${i}`;
-    b.onclick=()=>spellTap(l,i,b);
-    bk.appendChild(b);
-  });
-
-  document.getElementById('progBar').style.width=(G.sDone/Math.max(G.sWords.length,1)*100)+'%';
-  speak(wo.w,600);
 }
 
-function spellTap(letter,idx,btn){
-  const nxt=G.sFilled.findIndex(f=>f===null);
-  if(nxt===-1)return;
-  if(letter===G.sWord.w[nxt]){
-    G.sFilled[nxt]=letter;
-    btn.classList.add('used');
-    const sl=document.getElementById(`sl${nxt}`);
-    sl.textContent=letter; sl.classList.add('filled');
-    void sl.offsetWidth; sl.classList.add('pop');
-    sfxOk(); speak(letter,140);
-    clearHints();
-    if(G.sFilled.every(f=>f!==null)) setTimeout(wordDone,580);
+function showHint() {
+  // Glow the correct letter in position 0 or next unfilled
+  document.getElementById('feedback').textContent = "💡 Hint: " + currentWord[0] + "...";
+  if (soundOn) speak("The first letter is " + currentWord[0]);
+  setTimeout(() => {
+    answerSoFar = new Array(currentWord.length).fill('');
+    document.querySelectorAll('.tile').forEach(t => t.classList.remove('used'));
+    renderAnswerSlots();
+    wrongAttempts = 0;
+  }, 1500);
+}
+
+function onCorrect() {
+  stars++;
+  renderStars();
+  if (soundOn) {
+    speak("Well done! " + currentWord);
+  }
+  const msgs = ['Amazing! 🎉','Perfect! ⭐','Brilliant! 🌟','Awesome! 🎊','Wonderful! 🌈'];
+  document.getElementById('cel-title').textContent = msgs[Math.floor(Math.random()*msgs.length)];
+  document.getElementById('cel-msg').textContent = 'You spelled ' + currentWord + '! 🎉';
+  startConfetti();
+  document.getElementById('celebration').classList.add('show');
+
+  if (stars % 5 === 0) {
+    setTimeout(() => {
+      document.getElementById('cel-title').textContent = '⭐ ' + stars + ' Stars! ⭐';
+      document.getElementById('cel-msg').textContent = 'You are a spelling superstar!';
+    }, 400);
+  }
+}
+
+document.getElementById('next-btn').addEventListener('click', () => {
+  stopConfetti();
+  document.getElementById('celebration').classList.remove('show');
+  levelWordIdx++;
+  if (levelWordIdx >= shuffledWords.length) {
+    level = (level + 1) % LEVELS.length;
+    startLevel();
   } else {
-    G.sWrong++;
-    btn.classList.add('wobble'); sfxBad();
-    setTimeout(()=>btn.classList.remove('wobble'),480);
-    if(G.sWrong>=3) showHint();
+    loadWord();
   }
-}
-function showHint(){const nxt=G.sFilled.findIndex(f=>f===null);const c=G.sWord.w[nxt];document.querySelectorAll('.lbtn:not(.used)').forEach(b=>{if(b.dataset.l===c)b.classList.add('hint')})}
-function clearHints(){document.querySelectorAll('.hint').forEach(b=>b.classList.remove('hint'))}
+});
 
-function wordDone(){
-  sfxWin(); G.stars[1]++; G.sDone++;
-  document.getElementById('sStar').textContent=G.stars[1];
+document.getElementById('speak-btn').addEventListener('click', () => {
+  speak(currentWord);
+});
 
-  const wf=document.getElementById('wfTxt');
-  wf.className='wf-txt bo'; wf.textContent=`✨ ${G.sWord.w}! ✨`;
-  wf.classList.add('show'); setTimeout(()=>wf.classList.remove('show'),1400);
+document.getElementById('sound-toggle').addEventListener('click', () => {
+  soundOn = !soundOn;
+  document.getElementById('sound-toggle').textContent = soundOn ? '🔊' : '🔇';
+  if (!soundOn) window.speechSynthesis.cancel();
+});
 
-  miniCF(BCOLS);
-  speak(`Amazing! You spelled ${G.sWord.w}!`,200);
-  document.getElementById('progBar').style.width=(G.sDone/G.sWords.length*100)+'%';
-
-  if(G.sDone>=6) setTimeout(()=>checkLevelUp(),1800);
-  else if(G.sDone%3===0) setTimeout(()=>showCeleb('spell'),1800);
-  else setTimeout(()=>{G.sIdx++;loadSpellWord();},2000);
+function startLevel() {
+  shuffledWords = shuffle(LEVELS[level].words);
+  levelWordIdx = 0;
+  renderLevel();
+  loadWord();
 }
 
-function checkLevelUp(){
-  if(G.sLvl<LVLS.length-1){
-    G.sLvl++; G.sDone=0;
-    buildSpellList(); updateBadge();
-    showCeleb('lvlup');
-  } else showCeleb('spell');
-}
+// Confetti
+let confettiAnim = null;
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
 
-function rptWord(){if(G.sWord) speak(G.sWord.w);}
-
-/* ── CELEBRATIONS ── */
-function showCeleb(type){
-  G.lastCeleb=type;
-  const isGirl=G.kid===0;
-  const ov=document.getElementById('celebOv');
-  ov.className='ov show '+(isGirl?'ov-gi':'ov-bo');
-  document.getElementById('cContinue').className='ov-btn '+(isGirl?'gi':'bo');
-
-  const name=CFG.kids[G.kid].name;
-  const gMsgs=[
-    {e:'🌸',t:`Yay ${name}!`,  s:'You are amazing!'},
-    {e:'🦄',t:'So clever!',    s:'Keep exploring sweetie!'},
-    {e:'🌟',t:'Superstar!',    s:'You make me so happy!'},
-    {e:'🎀',t:'Brilliant!',    s:'Well done little one!'},
-    {e:'🌈',t:'Beautiful!',    s:'You are so smart!'},
-  ];
-  const bMsgs=[
-    {e:'🚀',t:`Great job ${name}!`,s:'You spelled it!'},
-    {e:'🏆',t:'Champion!',        s:'Star speller!'},
-    {e:'⚡',t:'Lightning fast!',  s:'You nailed it!'},
-    {e:'🦁',t:`Roar ${name}!`,    s:'Super spelling!'},
-    {e:'🎯',t:'Bullseye!',        s:'Perfect spelling!'},
-  ];
-  const lvlMsg={e:'🌟',t:'Level Up!',s:`You unlocked ${LVLS[G.sLvl]?.name||'Champion'}!`};
-
-  const msgs=isGirl?gMsgs:bMsgs;
-  const m=type==='lvlup'?lvlMsg:msgs[Math.floor(Math.random()*msgs.length)];
-  document.getElementById('cIco').textContent=m.e;
-  document.getElementById('cTitle').textContent=m.t;
-  document.getElementById('cSub').textContent=m.s;
-  confetti(isGirl?GCOLS:BCOLS);
-  speak(`${m.t} ${m.s}`,320);
-}
-
-function celebNext(){
-  document.getElementById('celebOv').classList.remove('show');
-  if(G.kid===0){ dNav(1); }
-  else { G.sIdx++; loadSpellWord(); }
-}
-
-/* ── TOGGLE ── */
-function toggleSound(){
-  G.soundOn=!G.soundOn;
-  const ico=G.soundOn?'🔊':'🔇';
-  document.getElementById('dSnd').textContent=ico;
-  document.getElementById('sSnd').textContent=ico;
-}
-
-/* ── UTILS ── */
-function makeDist(word,n){
-  const a='ABCDEFGHIJKLMNOPQRSTUVWXYZ',h=new Set(word),d=[];
-  while(d.length<n){const l=a[Math.floor(Math.random()*26)];if(!h.has(l)&&!d.includes(l))d.push(l);}
-  return d;
-}
-function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
-
-function spawnSparks(x,y,cols){
-  const em=['⭐','✨','💫','🌟','💖','🎀','🌸'];
-  for(let i=0;i<5;i++){
-    const s=document.createElement('div'); s.className='spark';
-    const ox=(Math.random()-.5)*90;
-    s.style.cssText=`left:${x+ox}px;top:${y-15}px;animation-delay:${i*.06}s;color:${cols[Math.floor(Math.random()*cols.length)]}`;
-    s.textContent=em[Math.floor(Math.random()*em.length)];
-    document.body.appendChild(s); setTimeout(()=>s.remove(),900);
+function startConfetti() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  particles = [];
+  for (let i = 0; i < 100; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height,
+      w: Math.random()*10+5, h: Math.random()*6+3,
+      color: `hsl(${Math.random()*360},90%,60%)`,
+      vx: (Math.random()-0.5)*3, vy: Math.random()*4+2,
+      angle: Math.random()*360, spin: (Math.random()-0.5)*6
+    });
   }
+  if (confettiAnim) cancelAnimationFrame(confettiAnim);
+  animConfetti();
 }
 
-function miniCF(cols){
-  const c=document.getElementById('cf');
-  for(let i=0;i<28;i++){
-    const p=document.createElement('div'); p.className='cp';
-    p.style.cssText=`left:${Math.random()*100}vw;width:${7+Math.random()*8}px;height:${7+Math.random()*8}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${1.1+Math.random()*1.4}s;animation-delay:${Math.random()*.3}s`;
-    c.appendChild(p);
-  }
-  setTimeout(()=>c.innerHTML='',3000);
+function animConfetti() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.angle * Math.PI/180);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+    ctx.restore();
+    p.x += p.vx; p.y += p.vy; p.angle += p.spin;
+  });
+  particles = particles.filter(p => p.y < canvas.height + 20);
+  if (particles.length > 0) confettiAnim = requestAnimationFrame(animConfetti);
 }
 
-function confetti(cols){
-  const c=document.getElementById('cf'); c.innerHTML='';
-  for(let i=0;i<65;i++){
-    const p=document.createElement('div'); p.className='cp';
-    p.style.cssText=`left:${Math.random()*100}vw;width:${8+Math.random()*12}px;height:${8+Math.random()*12}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${1.3+Math.random()*1.9}s;animation-delay:${Math.random()*.4}s`;
-    c.appendChild(p);
-  }
-  setTimeout(()=>c.innerHTML='',4500);
+function stopConfetti() {
+  if (confettiAnim) cancelAnimationFrame(confettiAnim);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles = [];
 }
+
+// Boot
+startLevel();
 </script>
 </body>
 </html>
-Claude
