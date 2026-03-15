@@ -325,19 +325,19 @@ const PLAYERS = {
 
 // ===== AAYAH DATA =====
 const ABC_DATA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l => {
-  const map = {A:'🍎 Apple',B:'🐻 Bear',C:'🐱 Cat',D:'🐶 Dog',E:'🥚 Egg',F:'🐟 Fish',
-    G:'🍇 Grapes',H:'🏠 House',I:'🍦 Ice cream',J:'🧃 Juice',K:'🪁 Kite',L:'🦁 Lion',
-    M:'🌙 Moon',N:'👃 Nose',O:'🍊 Orange',P:'🐷 Pig',Q:'👸 Queen',R:'🌧 Rain',
-    S:'⭐ Star',T:'🌳 Tree',U:'☂ Umbrella',V:'🚐 Van',W:'🌊 Water',X:'❌ X-ray',
-    Y:'💛 Yellow',Z:'🦓 Zebra'};
+  const map = {A:'Apple',B:'Bear',C:'Cat',D:'Dog',E:'Egg',F:'Fish',
+    G:'Grapes',H:'House',I:'Ice cream',J:'Juice',K:'Kite',L:'Lion',
+    M:'Moon',N:'Nose',O:'Orange',P:'Pig',Q:'Queen',R:'Rain',
+    S:'Star',T:'Tree',U:'Umbrella',V:'Van',W:'Water',X:'X-ray',
+    Y:'Yellow',Z:'Zebra'};
   return { letter: l, word: map[l] };
 });
 
 const NUMBERS_DATA = [
-  {n:1,e:'☝️',w:'One'},{n:2,e:'✌️',w:'Two'},{n:3,e:'👌',w:'Three'},
-  {n:4,e:'🍀',w:'Four'},{n:5,e:'🖐',w:'Five'},{n:6,e:'🎲',w:'Six'},
-  {n:7,e:'🌈',w:'Seven'},{n:8,e:'🐙',w:'Eight'},{n:9,e:'⑨',w:'Nine'},
-  {n:10,e:'🔟',w:'Ten'}
+  {n:1,w:'One'},{n:2,w:'Two'},{n:3,w:'Three'},
+  {n:4,w:'Four'},{n:5,w:'Five'},{n:6,w:'Six'},
+  {n:7,w:'Seven'},{n:8,w:'Eight'},{n:9,w:'Nine'},
+  {n:10,w:'Ten'}
 ];
 
 const SHAPES_DATA = [
@@ -606,10 +606,10 @@ function setTitle(text) {
 function speakCurrentItem() {
   if (currentActivity === 'abc') {
     const item = shuffledItems[itemIdx];
-    speakSlow(item.letter + '. ' + item.word);
+    speakSlow(item.letter + ' for ' + item.word);
   } else if (currentActivity === 'numbers') {
     const item = shuffledItems[itemIdx];
-    speakSlow(item.n + '. ' + item.w);
+    speakSlow(String(item.n));
   } else if (currentActivity === 'shapes') {
     speakSlow(shuffledItems[itemIdx].name);
   } else if (currentActivity === 'colors') {
@@ -653,11 +653,9 @@ function loadABCItem() {
   }
   options = shuffle(options);
 
-  const pic = document.getElementById('word-picture');
-  pic.textContent = item.word.split(' ')[0]; // emoji part
+  document.getElementById('word-picture').textContent = correct;
   document.getElementById('word-label').innerHTML =
-    '<span style="font-size:2.5rem;display:block;margin:6px 0">' + correct + '</span>' +
-    '<span style="font-size:1rem;color:#888">' + item.word + '</span>';
+    '<span style="font-size:1.2rem;color:#888">' + correct + ' for ' + item.word + '</span>';
 
   const tiles = document.getElementById('letter-tiles');
   tiles.innerHTML = '';
@@ -669,7 +667,7 @@ function loadABCItem() {
       if (letter === correct) {
         stars++;
         renderStars();
-        speak('Great! ' + correct + ' for ' + item.word.split(' ')[1], 0.9, 1.05);
+        speak('Great! ' + correct + ' for ' + item.word, 0.9, 1.05);
         t.style.background = '#d1fae5';
         setTimeout(() => { itemIdx++; loadABCItem(); }, 1500);
       } else {
@@ -680,7 +678,7 @@ function loadABCItem() {
     });
     tiles.appendChild(t);
   });
-  speakSlow(correct + '. ' + item.word);
+  speakSlow(correct + ' for ' + item.word);
 }
 
 // ===================== AAYAH: NUMBERS =====================
@@ -694,10 +692,9 @@ function startNumbers() {
 function loadNumberItem() {
   if (itemIdx >= shuffledItems.length) { shuffledItems = shuffle(NUMBERS_DATA); itemIdx = 0; }
   const item = shuffledItems[itemIdx];
-  document.getElementById('word-picture').textContent = item.e;
+  document.getElementById('word-picture').textContent = item.n;
   document.getElementById('word-label').innerHTML =
-    '<span style="font-size:3rem;display:block">' + item.n + '</span>' +
-    '<span style="font-size:1.1rem;color:#888">' + item.w + '</span>';
+    '<span style="font-size:1.1rem;color:#888">Find the number ' + item.n + '</span>';
   document.getElementById('answer-slots').innerHTML = '';
   document.getElementById('feedback').textContent = '';
   document.getElementById('speak-btn').style.display = 'inline-block';
@@ -719,18 +716,18 @@ function loadNumberItem() {
       if (n === item.n) {
         stars++;
         renderStars();
-        speak('Yes! That\'s ' + item.w + '!', 0.9, 1.05);
+        speak('Yes! ' + item.w, 0.9, 1.05);
         t.style.background = '#d1fae5';
         setTimeout(() => { itemIdx++; loadNumberItem(); }, 1500);
       } else {
         t.style.background = '#fee2e2';
-        speak('Not quite! Find ' + item.w, 0.9, 1.05);
+        speak('Not quite! Find ' + item.n, 0.9, 1.05);
         setTimeout(() => { t.style.background = '#fff'; }, 600);
       }
     });
     tiles.appendChild(t);
   });
-  speakSlow(item.w + '. ' + item.n);
+  speakSlow(String(item.n));
 }
 
 // ===================== AAYAH: SHAPES =====================
