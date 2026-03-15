@@ -420,27 +420,36 @@ let mathAnswer = 0;
 let countingTarget = 0;
 
 // ===================== VOICE SETUP =====================
+// We use two TTS approaches:
+// 1. Primary: SpeechSynthesis with the best available voice
+// 2. Queue-based speaking for phonics sequences
+
+let voicesReady = false;
+
 function pickVoice() {
   const voices = speechSynthesis.getVoices();
   if (!voices.length) return null;
-  // Strongly prefer premium/enhanced natural voices, then fallback to standard
+  voicesReady = true;
+  // Strongly prefer premium/enhanced natural voices
   const preferences = [
-    // Apple premium voices (macOS/iOS)
+    // Apple premium voices (macOS/iOS) - these sound the most human
     v => /samantha.*premium/i.test(v.name),
     v => /samantha.*enhanced/i.test(v.name),
     v => /samantha/i.test(v.name) && v.lang.startsWith('en'),
-    // Google natural voices
+    // Google voices in Chrome - quite natural
     v => /google uk english female/i.test(v.name),
     v => /google us english/i.test(v.name),
-    // Other Apple voices
+    // Apple quality voices
     v => /karen/i.test(v.name) && v.lang.startsWith('en'),
     v => /kate/i.test(v.name) && v.lang.startsWith('en'),
     v => /tessa/i.test(v.name),
     v => /moira/i.test(v.name),
-    // Windows
+    v => /fiona/i.test(v.name),
+    // Microsoft neural voices
+    v => /jenny/i.test(v.name) && /neural/i.test(v.name),
+    v => /aria/i.test(v.name) && /neural/i.test(v.name),
     v => /zira/i.test(v.name),
-    v => /hazel/i.test(v.name),
-    // Any English female-sounding voice, skip compact/espeak
+    // Skip compact/espeak (very robotic)
     v => v.lang.startsWith('en') && !/compact|espeak/i.test(v.name),
   ];
   for (const test of preferences) {
@@ -455,47 +464,57 @@ function setupVoice() {
 }
 speechSynthesis.onvoiceschanged = setupVoice;
 setupVoice();
+// Some browsers need a retry
+setTimeout(setupVoice, 500);
+setTimeout(setupVoice, 1500);
 
 function speak(text, rate, pitch) {
   if (!soundOn) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   if (selectedVoice) u.voice = selectedVoice;
-  u.rate = rate || 0.82;
-  u.pitch = pitch || 1.15;
+  u.rate = rate || 0.9;
+  u.pitch = pitch || 1.05;
   u.volume = 1.0;
   speechSynthesis.speak(u);
 }
 
-// Speak multiple utterances in sequence (for phonics: word, then each sound)
+// Speak multiple utterances in sequence with proper chaining
+function speakChain(items, idx) {
+  if (!soundOn || idx >= items.length) return;
+  const item = items[idx];
+  const u = new SpeechSynthesisUtterance(item.text);
+  if (selectedVoice) u.voice = selectedVoice;
+  u.rate = item.rate || 0.85;
+  u.pitch = item.pitch || 1.05;
+  u.volume = 1.0;
+  u.onend = () => {
+    setTimeout(() => speakChain(items, idx + 1), item.pause || 150);
+  };
+  speechSynthesis.speak(u);
+}
+
 function speakQueue(items) {
   if (!soundOn) return;
   speechSynthesis.cancel();
-  items.forEach((item, i) => {
-    const u = new SpeechSynthesisUtterance(item.text);
-    if (selectedVoice) u.voice = selectedVoice;
-    u.rate = item.rate || 0.75;
-    u.pitch = item.pitch || 1.15;
-    u.volume = 1.0;
-    speechSynthesis.speak(u);
-  });
+  speakChain(items, 0);
 }
 
-function speakSlow(text) { speak(text, 0.7, 1.2); }
-function speakNormal(text) { speak(text, 0.82, 1.15); }
+function speakSlow(text) { speak(text, 0.78, 1.1); }
+function speakNormal(text) { speak(text, 0.9, 1.05); }
 
-// Speak a word using phonics sounds
+// Speak a word using phonics sounds with pauses between each sound
 function speakPhonics(word) {
   if (!soundOn) return;
+  speechSynthesis.cancel();
   const items = [
-    { text: word, rate: 0.75, pitch: 1.15 },  // Say the whole word first
+    { text: word, rate: 0.8, pitch: 1.05, pause: 400 },
   ];
-  // Then spell it out with phonics sounds
   word.toUpperCase().split('').forEach(letter => {
     const sound = PHONICS[letter] || letter;
-    items.push({ text: sound, rate: 0.6, pitch: 1.1 });
+    items.push({ text: sound, rate: 0.7, pitch: 1.0, pause: 300 });
   });
-  speakQueue(items);
+  speakChain(items, 0);
 }
 
 // ===================== NAVIGATION =====================
@@ -509,7 +528,7 @@ function selectPlayer(id) {
   stars = 0;
   renderStars();
   showActivityPicker();
-  speak('Hello ' + p.name + '! Let\'s learn!', 0.85, 1.3);
+  speak('Hello ' + p.name + '! Let\'s learn!', 0.9, 1.05);
 }
 
 function goHome() {
@@ -602,6 +621,7 @@ function speakCurrentItem() {
     speakNormal('What number comes next?');
   } else if (['spelling1','spelling2','sight-words'].includes(currentActivity)) {
     speakPhonics(currentWord);
+    return;
   } else if (['math-add','math-sub'].includes(currentActivity)) {
     speakNormal(currentWord);
   }
@@ -649,12 +669,12 @@ function loadABCItem() {
       if (letter === correct) {
         stars++;
         renderStars();
-        speak('Great! ' + correct + ' for ' + item.word.split(' ')[1], 0.85, 1.3);
+        speak('Great! ' + correct + ' for ' + item.word.split(' ')[1], 0.9, 1.05);
         t.style.background = '#d1fae5';
         setTimeout(() => { itemIdx++; loadABCItem(); }, 1500);
       } else {
         t.style.background = '#fee2e2';
-        speak('Try again! Find ' + correct, 0.85, 1.3);
+        speak('Try again! Find ' + correct, 0.9, 1.05);
         setTimeout(() => { t.style.background = '#fff'; }, 600);
       }
     });
@@ -699,12 +719,12 @@ function loadNumberItem() {
       if (n === item.n) {
         stars++;
         renderStars();
-        speak('Yes! That\'s ' + item.w + '!', 0.85, 1.3);
+        speak('Yes! That\'s ' + item.w + '!', 0.9, 1.05);
         t.style.background = '#d1fae5';
         setTimeout(() => { itemIdx++; loadNumberItem(); }, 1500);
       } else {
         t.style.background = '#fee2e2';
-        speak('Not quite! Find ' + item.w, 0.85, 1.3);
+        speak('Not quite! Find ' + item.w, 0.9, 1.05);
         setTimeout(() => { t.style.background = '#fff'; }, 600);
       }
     });
@@ -753,12 +773,12 @@ function loadShapeItem() {
       if (name === shape.name) {
         stars++;
         renderStars();
-        speak('Well done! That\'s a ' + shape.name + '!', 0.85, 1.3);
+        speak('Well done! That\'s a ' + shape.name + '!', 0.9, 1.05);
         t.style.background = '#d1fae5';
         setTimeout(() => { itemIdx++; loadShapeItem(); }, 1500);
       } else {
         t.style.background = '#fee2e2';
-        speak('That\'s a ' + name + '. Find the ' + shape.name, 0.85, 1.3);
+        speak('That\'s a ' + name + '. Find the ' + shape.name, 0.9, 1.05);
         setTimeout(() => { t.style.background = 'rgba(255,255,255,0.9)'; }, 800);
       }
     });
@@ -805,12 +825,12 @@ function loadColorItem() {
       if (name === color.name) {
         stars++;
         renderStars();
-        speak('Yes! That\'s ' + color.name + '!', 0.85, 1.3);
+        speak('Yes! That\'s ' + color.name + '!', 0.9, 1.05);
         t.style.background = '#d1fae5';
         setTimeout(() => { itemIdx++; loadColorItem(); }, 1500);
       } else {
         t.style.background = '#fee2e2';
-        speak('That\'s ' + name + '. Find ' + color.name, 0.85, 1.3);
+        speak('That\'s ' + name + '. Find ' + color.name, 0.9, 1.05);
         setTimeout(() => { t.style.background = '#fff'; }, 600);
       }
     });
@@ -856,12 +876,12 @@ function loadAnimalItem() {
       if (name === animal.name) {
         stars++;
         renderStars();
-        speak('Yes! The ' + animal.name + ' says ' + animal.sound, 0.85, 1.3);
+        speak('Yes! The ' + animal.name + ' says ' + animal.sound, 0.9, 1.05);
         t.style.background = '#d1fae5';
         setTimeout(() => { itemIdx++; loadAnimalItem(); }, 2000);
       } else {
         t.style.background = '#fee2e2';
-        speak('That\'s a ' + name + '. Find the ' + animal.name, 0.85, 1.3);
+        speak('That\'s a ' + name + '. Find the ' + animal.name, 0.9, 1.05);
         setTimeout(() => { t.style.background = '#fff'; }, 600);
       }
     });
@@ -885,15 +905,16 @@ function loadSpellingWord() {
   currentWord = entry.w;
   answerSoFar = new Array(currentWord.length).fill('');
   wrongAttempts = 0;
-  // No emoji - just show a listening prompt and the word via audio
-  document.getElementById('word-picture').textContent = '👂';
+  // Show the word to spell clearly
+  document.getElementById('word-picture').textContent = '📝';
   document.getElementById('word-label').innerHTML =
-    '<span style="font-size:1.2rem;color:#888">Listen and spell the word</span>';
+    '<span style="font-size:2rem;display:block;color:#7c3aed;margin:6px 0">' + currentWord + '</span>' +
+    '<span style="font-size:1rem;color:#888">Spell this word</span>';
   document.getElementById('feedback').textContent = '';
   document.getElementById('speak-btn').style.display = 'inline-block';
   renderAnswerSlots();
   renderSpellingTiles();
-  // Use phonics to spell out the word
+  // Say the word then spell with phonics
   speakPhonics(currentWord);
 }
 
@@ -938,7 +959,7 @@ function tapSpellingTile(tileEl, letter) {
   renderAnswerSlots();
   // Speak the phonics sound, not the letter name
   const sound = PHONICS[letter.toUpperCase()] || letter;
-  speak(sound, 0.7, 1.1);
+  speak(sound, 0.8, 1.0);
   if (!answerSoFar.includes('')) checkSpelling();
 }
 
@@ -972,14 +993,14 @@ function showSpellingWrong() {
   document.querySelectorAll('.answer-slot').forEach(s => s.classList.add('wrong'));
   setTimeout(() => document.querySelectorAll('.answer-slot').forEach(s => s.classList.remove('wrong')), 600);
   document.getElementById('feedback').textContent = 'Try again!';
-  speak('Not quite, try again', 0.9, 1.25);
+  speak('Not quite, try again', 0.9, 1.05);
 }
 
 function showSpellingHint() {
   const firstLetter = currentWord[0];
   const phonicSound = PHONICS[firstLetter.toUpperCase()] || firstLetter;
   document.getElementById('feedback').textContent = 'Hint: starts with ' + firstLetter.toUpperCase();
-  speak('It starts with ' + phonicSound, 0.7, 1.15);
+  speak('It starts with ' + phonicSound, 0.85, 1.05);
   setTimeout(() => {
     answerSoFar = new Array(currentWord.length).fill('');
     document.querySelectorAll('.tile').forEach(t => t.classList.remove('used'));
@@ -1051,14 +1072,14 @@ function loadMathProblem(type) {
         btn.classList.add('correct-pick');
         stars++;
         renderStars();
-        speak('Correct! ' + a + ' ' + (type === 'add' ? 'plus' : 'minus') + ' ' + b + ' equals ' + answer, 0.85, 1.25);
+        speak('Correct! ' + a + ' ' + (type === 'add' ? 'plus' : 'minus') + ' ' + b + ' equals ' + answer, 0.9, 1.05);
         startConfetti();
         document.getElementById('cel-title').textContent = 'Correct!';
         document.getElementById('cel-msg').textContent = a + ' ' + symbol + ' ' + b + ' = ' + answer;
         document.getElementById('celebration').classList.add('show');
       } else {
         btn.classList.add('wrong-pick');
-        speak('Not quite. Try again!', 0.9, 1.25);
+        speak('Not quite. Try again!', 0.9, 1.05);
         document.getElementById('feedback').textContent = 'Try again!';
         setTimeout(() => { btn.classList.remove('wrong-pick'); }, 600);
       }
@@ -1110,14 +1131,14 @@ function loadCountingProblem() {
         btn.classList.add('correct-pick');
         stars++;
         renderStars();
-        speak('Yes! ' + countingTarget + ' comes next!', 0.85, 1.25);
+        speak('Yes! ' + countingTarget + ' comes next!', 0.9, 1.05);
         startConfetti();
         document.getElementById('cel-title').textContent = 'Correct!';
         document.getElementById('cel-msg').textContent = sequence.map(x => x === '?' ? countingTarget : x).join(', ');
         document.getElementById('celebration').classList.add('show');
       } else {
         btn.classList.add('wrong-pick');
-        speak('Try again! Count carefully.', 0.9, 1.25);
+        speak('Try again! Count carefully.', 0.9, 1.05);
         document.getElementById('feedback').textContent = 'Try again!';
         setTimeout(() => { btn.classList.remove('wrong-pick'); }, 600);
       }
