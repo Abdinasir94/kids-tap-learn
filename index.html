@@ -366,30 +366,35 @@ const ANIMALS_DATA = [
 
 // ===== ISAAC DATA =====
 const SPELLING_EASY = [
-  {w:'CAT',e:'🐱'},{w:'DOG',e:'🐶'},{w:'SUN',e:'☀️'},{w:'BEE',e:'🐝'},
-  {w:'HAT',e:'🎩'},{w:'CUP',e:'☕'},{w:'BUS',e:'🚌'},{w:'RED',e:'🔴'},
-  {w:'BIG',e:'🐘'},{w:'RUN',e:'🏃'},{w:'MOP',e:'🧹'},{w:'PEN',e:'🖊'},
-  {w:'NET',e:'🥅'},{w:'JAM',e:'🍯'},{w:'BED',e:'🛏'},
+  {w:'Cat'},{w:'Dog'},{w:'Sun'},{w:'Bee'},
+  {w:'Hat'},{w:'Cup'},{w:'Bus'},{w:'Red'},
+  {w:'Big'},{w:'Run'},{w:'Mop'},{w:'Pen'},
+  {w:'Net'},{w:'Jam'},{w:'Bed'},
 ];
 
 const SPELLING_HARD = [
-  {w:'TREE',e:'🌳'},{w:'FISH',e:'🐟'},{w:'BIRD',e:'🐦'},{w:'CAKE',e:'🎂'},
-  {w:'MOON',e:'🌙'},{w:'STAR',e:'⭐'},{w:'BOOK',e:'📖'},{w:'FROG',e:'🐸'},
-  {w:'SHIP',e:'🚢'},{w:'DUCK',e:'🦆'},{w:'HAND',e:'✋'},{w:'RAIN',e:'🌧'},
-  {w:'MILK',e:'🥛'},{w:'LAMP',e:'💡'},{w:'BELL',e:'🔔'},
-  {w:'HOUSE',e:'🏠'},{w:'APPLE',e:'🍎'},{w:'WATER',e:'💧'},
-  {w:'SHEEP',e:'🐑'},{w:'TIGER',e:'🐯'},
+  {w:'Tree'},{w:'Fish'},{w:'Bird'},{w:'Cake'},
+  {w:'Moon'},{w:'Star'},{w:'Book'},{w:'Frog'},
+  {w:'Ship'},{w:'Duck'},{w:'Hand'},{w:'Rain'},
+  {w:'Milk'},{w:'Lamp'},{w:'Bell'},
+  {w:'House'},{w:'Apple'},{w:'Water'},
+  {w:'Sheep'},{w:'Tiger'},
 ];
 
 const SIGHT_WORDS = [
-  {w:'THE',hint:'_ _ E'},{w:'AND',hint:'A _ _'},{w:'WAS',hint:'_ A _'},
-  {w:'FOR',hint:'_ O _'},{w:'ARE',hint:'A _ _'},{w:'HIS',hint:'_ I _'},
-  {w:'HER',hint:'_ E _'},{w:'HAS',hint:'_ A _'},{w:'NOT',hint:'_ O _'},
-  {w:'BUT',hint:'_ U _'},{w:'YOU',hint:'_ O _'},{w:'ALL',hint:'A _ _'},
-  {w:'CAN',hint:'_ A _'},{w:'HAD',hint:'_ A _'},{w:'ONE',hint:'_ N _'},
-  {w:'OUR',hint:'_ U _'},{w:'DAY',hint:'_ A _'},{w:'GET',hint:'_ E _'},
-  {w:'HIM',hint:'_ I _'},{w:'SEE',hint:'_ E _'},
+  {w:'The'},{w:'And'},{w:'Was'},{w:'For'},{w:'Are'},
+  {w:'His'},{w:'Her'},{w:'Has'},{w:'Not'},{w:'But'},
+  {w:'You'},{w:'All'},{w:'Can'},{w:'Had'},{w:'One'},
+  {w:'Our'},{w:'Day'},{w:'Get'},{w:'Him'},{w:'See'},
 ];
+
+// Phonics map - how each letter sounds (not letter names)
+const PHONICS = {
+  A:'ah',B:'buh',C:'kuh',D:'duh',E:'eh',F:'fff',G:'guh',H:'huh',
+  I:'ih',J:'juh',K:'kuh',L:'lll',M:'mmm',N:'nnn',O:'oh',P:'puh',
+  Q:'kwuh',R:'rrr',S:'sss',T:'tuh',U:'uh',V:'vvv',W:'wuh',X:'ks',
+  Y:'yuh',Z:'zzz'
+};
 
 const COUNTING_RANGES = [
   {label:'20 to 30', start:20, end:30},
@@ -418,17 +423,25 @@ let countingTarget = 0;
 function pickVoice() {
   const voices = speechSynthesis.getVoices();
   if (!voices.length) return null;
-  // Prefer a natural/child-friendly female voice
+  // Strongly prefer premium/enhanced natural voices, then fallback to standard
   const preferences = [
-    v => /samantha/i.test(v.name),
-    v => /karen/i.test(v.name),
-    v => /kate/i.test(v.name),
+    // Apple premium voices (macOS/iOS)
+    v => /samantha.*premium/i.test(v.name),
+    v => /samantha.*enhanced/i.test(v.name),
+    v => /samantha/i.test(v.name) && v.lang.startsWith('en'),
+    // Google natural voices
+    v => /google uk english female/i.test(v.name),
+    v => /google us english/i.test(v.name),
+    // Other Apple voices
+    v => /karen/i.test(v.name) && v.lang.startsWith('en'),
+    v => /kate/i.test(v.name) && v.lang.startsWith('en'),
+    v => /tessa/i.test(v.name),
     v => /moira/i.test(v.name),
-    v => /female/i.test(v.name) && v.lang.startsWith('en'),
+    // Windows
     v => /zira/i.test(v.name),
-    v => /google.*female/i.test(v.name),
-    v => /google.*us/i.test(v.name) && v.lang.startsWith('en'),
-    v => v.lang.startsWith('en') && !v.name.includes('Compact'),
+    v => /hazel/i.test(v.name),
+    // Any English female-sounding voice, skip compact/espeak
+    v => v.lang.startsWith('en') && !/compact|espeak/i.test(v.name),
   ];
   for (const test of preferences) {
     const match = voices.find(test);
@@ -448,13 +461,42 @@ function speak(text, rate, pitch) {
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   if (selectedVoice) u.voice = selectedVoice;
-  u.rate = rate || 0.8;
-  u.pitch = pitch || 1.3;
+  u.rate = rate || 0.82;
+  u.pitch = pitch || 1.15;
+  u.volume = 1.0;
   speechSynthesis.speak(u);
 }
 
-function speakSlow(text) { speak(text, 0.65, 1.35); }
-function speakNormal(text) { speak(text, 0.85, 1.25); }
+// Speak multiple utterances in sequence (for phonics: word, then each sound)
+function speakQueue(items) {
+  if (!soundOn) return;
+  speechSynthesis.cancel();
+  items.forEach((item, i) => {
+    const u = new SpeechSynthesisUtterance(item.text);
+    if (selectedVoice) u.voice = selectedVoice;
+    u.rate = item.rate || 0.75;
+    u.pitch = item.pitch || 1.15;
+    u.volume = 1.0;
+    speechSynthesis.speak(u);
+  });
+}
+
+function speakSlow(text) { speak(text, 0.7, 1.2); }
+function speakNormal(text) { speak(text, 0.82, 1.15); }
+
+// Speak a word using phonics sounds
+function speakPhonics(word) {
+  if (!soundOn) return;
+  const items = [
+    { text: word, rate: 0.75, pitch: 1.15 },  // Say the whole word first
+  ];
+  // Then spell it out with phonics sounds
+  word.toUpperCase().split('').forEach(letter => {
+    const sound = PHONICS[letter] || letter;
+    items.push({ text: sound, rate: 0.6, pitch: 1.1 });
+  });
+  speakQueue(items);
+}
 
 // ===================== NAVIGATION =====================
 function selectPlayer(id) {
@@ -528,7 +570,7 @@ function startActivity(id) {
     case 'math-add': startMath('add'); break;
     case 'math-sub': startMath('sub'); break;
     case 'counting': startCounting(); break;
-    case 'sight-words': startSpelling(SIGHT_WORDS.map(s => ({w:s.w,e:'👀'})), 'Sight Words'); break;
+    case 'sight-words': startSpelling(SIGHT_WORDS, 'Sight Words'); break;
   }
 }
 
@@ -558,7 +600,9 @@ function speakCurrentItem() {
     speakSlow(a.name + '. The ' + a.name + ' says ' + a.sound);
   } else if (currentActivity === 'counting') {
     speakNormal('What number comes next?');
-  } else if (['spelling1','spelling2','sight-words','math-add','math-sub'].includes(currentActivity)) {
+  } else if (['spelling1','spelling2','sight-words'].includes(currentActivity)) {
+    speakPhonics(currentWord);
+  } else if (['math-add','math-sub'].includes(currentActivity)) {
     speakNormal(currentWord);
   }
 }
@@ -841,13 +885,16 @@ function loadSpellingWord() {
   currentWord = entry.w;
   answerSoFar = new Array(currentWord.length).fill('');
   wrongAttempts = 0;
-  document.getElementById('word-picture').textContent = entry.e;
-  document.getElementById('word-label').textContent = '_'.repeat(currentWord.length).split('').join('  ');
+  // No emoji - just show a listening prompt and the word via audio
+  document.getElementById('word-picture').textContent = '👂';
+  document.getElementById('word-label').innerHTML =
+    '<span style="font-size:1.2rem;color:#888">Listen and spell the word</span>';
   document.getElementById('feedback').textContent = '';
   document.getElementById('speak-btn').style.display = 'inline-block';
   renderAnswerSlots();
   renderSpellingTiles();
-  speakNormal('Spell the word. ' + currentWord.split('').join('. '));
+  // Use phonics to spell out the word
+  speakPhonics(currentWord);
 }
 
 function renderAnswerSlots() {
@@ -860,12 +907,10 @@ function renderAnswerSlots() {
     s.addEventListener('click', () => removeFromSlot(i));
     c.appendChild(s);
   }
-  document.getElementById('word-label').textContent =
-    currentWord.split('').map((ch,i) => answerSoFar[i] ? ch : '_').join('  ');
 }
 
 function renderSpellingTiles() {
-  const extras = 'AEIOURSTLNMD';
+  const extras = 'aeiourstlnmd';
   const extraCount = Math.max(2, 5 - currentWord.length);
   const extraLetters = [];
   for (let i = 0; i < extraCount; i++) {
@@ -891,7 +936,9 @@ function tapSpellingTile(tileEl, letter) {
   tileEl.classList.add('used');
   answerSoFar[nextEmpty] = letter;
   renderAnswerSlots();
-  speak(letter, 0.9, 1.2);
+  // Speak the phonics sound, not the letter name
+  const sound = PHONICS[letter.toUpperCase()] || letter;
+  speak(sound, 0.7, 1.1);
   if (!answerSoFar.includes('')) checkSpelling();
 }
 
@@ -929,8 +976,10 @@ function showSpellingWrong() {
 }
 
 function showSpellingHint() {
-  document.getElementById('feedback').textContent = 'Hint: starts with ' + currentWord[0];
-  speak('The first letter is ' + currentWord[0], 0.85, 1.25);
+  const firstLetter = currentWord[0];
+  const phonicSound = PHONICS[firstLetter.toUpperCase()] || firstLetter;
+  document.getElementById('feedback').textContent = 'Hint: starts with ' + firstLetter.toUpperCase();
+  speak('It starts with ' + phonicSound, 0.7, 1.15);
   setTimeout(() => {
     answerSoFar = new Array(currentWord.length).fill('');
     document.querySelectorAll('.tile').forEach(t => t.classList.remove('used'));
@@ -942,7 +991,7 @@ function showSpellingHint() {
 function onSpellingCorrect() {
   stars++;
   renderStars();
-  speak('Well done! You spelled ' + currentWord, 0.85, 1.3);
+  speak('Well done! You spelled ' + currentWord, 0.82, 1.15);
   const msgs = ['Amazing!','Perfect!','Brilliant!','Awesome!','Wonderful!','Superstar!'];
   document.getElementById('cel-title').textContent = msgs[Math.floor(Math.random()*msgs.length)];
   document.getElementById('cel-msg').textContent = 'You spelled ' + currentWord + '!';
